@@ -1,0 +1,169 @@
+<modification>
+    <id>product option</id>
+    <version>1.0.0</version>
+    <vqmver>2.0.0</vqmver>
+    <author>freelancer</author>
+    <comment>
+        execute following sql script
+        alter table category add column `option_id` int(11) not null default 0
+    </comment>
+    <file name="catalog/view/theme/*/template/product/category.tpl">
+        <operation>
+            <search position="replace">
+                <![CDATA[<input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />]]></search>
+            <add><![CDATA[
+<?php if($product['option']) {
+	foreach($product['option']['option_value'] as $option_value) { ?>
+	<form id="option_<?php echo $option_value['product_option_value_id']; ?>" method="POST">
+	    <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+	    <input type="hidden" name="quantity" value="1">
+	    <input type="hidden" name="option[<?php echo $product['option']['product_option_id']?>]" value="<?php echo $option_value['product_option_value_id']; ?>">
+	    <img alt="<?php echo $option_value['name']?>" title="<?php echo $option_value['name']?>" src="<?php echo $option_value['image']?>" onclick="addToCartOption('<?php echo $option_value['product_option_value_id']; ?>')">
+	</form>&nbsp;
+<?php	}
+} else { ?>
+        <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
+<?php } ?>]]>
+            </add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[<div id="content">]]></search>
+            <add><![CDATA[<style type="text/css">
+.cart img {
+    cursor: pointer;
+}
+</style>]]>
+            </add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[<script type="text/javascript"><!--]]></search>
+            <add><![CDATA[function addToCartOption(po_value_id) {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#option_'+po_value_id).serialize(),
+		dataType: 'json',
+		success: function(json) {
+			$('.success, .warning, .attention, .information, .error').remove();
+
+			if (json['redirect']) {
+				location = json['redirect'];
+			}
+
+			if (json['success']) {
+				$('#notification').html('<div class="success" style="display: none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+
+				$('.success').fadeIn('slow');
+
+				$('#cart-total').html(json['total']);
+
+				$('html, body').animate({ scrollTop: 0 }, 'slow');
+			}
+		}
+	});
+}]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="catalog/model/catalog/product.php">
+        <operation>
+            <search position="after"><![CDATA[class ModelCatalogProduct extends Model {]]></search>
+            <add><![CDATA[	public function getProductOption($product_id, $option_id) {
+		$product_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option po LEFT JOIN `" . DB_PREFIX . "option` o ON (po.option_id = o.option_id) LEFT JOIN " . DB_PREFIX . "option_description od ON (o.option_id = od.option_id) WHERE o.option_id = '".(int)$option_id."' AND po.product_id = '" . (int)$product_id . "' AND od.language_id = '" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
+		if(!$product_option_query->num_rows) {
+			return false;
+		}
+		$product_option_row = $product_option_query->row;
+
+		$product_option_value_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_id = '" . (int)$product_id . "' AND pov.product_option_id = '" . (int)$product_option_row['product_option_id'] . "' AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ov.sort_order");
+		$this->load->model('tool/image');
+		foreach ($product_option_value_query->rows as $product_option_value) {
+			$product_option_value_data[] = array(
+				'product_option_value_id' => $product_option_value['product_option_value_id'],
+				'option_value_id'         => $product_option_value['option_value_id'],
+				'name'                    => $product_option_value['name'],
+				'image'                   => $this->model_tool_image->resize($product_option_value['image'], 30, 30),
+				'quantity'                => $product_option_value['quantity'],
+				'subtract'                => $product_option_value['subtract'],
+				'price'                   => $product_option_value['price'],
+				'price_prefix'            => $product_option_value['price_prefix'],
+				'weight'                  => $product_option_value['weight'],
+				'weight_prefix'           => $product_option_value['weight_prefix']
+			);
+		}
+							
+		$product_option_data = array(
+			'product_option_id' => $product_option_row['product_option_id'],
+			'option_id'         => $product_option_row['option_id'],
+			'name'              => $product_option_row['name'],
+			'type'              => $product_option_row['type'],
+			'option_value'      => $product_option_value_data,
+			'required'          => $product_option_row['required']
+		);
+		return $product_option_data;
+	}]]></add>
+        </operation>
+    </file>
+
+
+    <file name="admin/controller/catalog/category.php">
+        <operation>
+            <search position="after"><![CDATA[$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');]]></search>
+            <add><![CDATA[$this->data['entry_option_id'] = $this->language->get('entry_option_id');]]></add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA[if (isset($this->request->post['status'])) {]]></search>
+            <add><![CDATA[		if (isset($this->request->post['option_id'])) {
+			$this->data['option_id'] = $this->request->post['option_id'];
+		} elseif (!empty($category_info)) {
+			$this->data['option_id'] = $category_info['option_id'];
+		} else {
+			$this->data['option_id'] = 0;
+		}]]></add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA[$this->template = 'catalog/category_form.tpl';]]></search>
+            <add><![CDATA[		$this->load->model('catalog/option');
+		$this->data['options'] = $this->model_catalog_option->getOptions();]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/model/catalog/category.php">
+        <operation>
+            <search position="before"><![CDATA[if (isset($data['image'])) {]]></search>
+            <add><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "category SET option_id = '" . (int)$data['option_id'] . "' WHERE category_id = '" . (int)$category_id . "'");]]>
+            </add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA['sort_order'  => $result['sort_order']]]></search>
+            <add><![CDATA[					'option_id'   => $result['option_id'],]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/russian/catalog/category.php">
+        <operation>
+            <search position="after"><![CDATA[// Entry]]></search>
+            <add><![CDATA[$_['entry_option_id']            = 'Опция';]]>
+            </add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/catalog/category_form.tpl">
+        <operation>
+            <search position="after" offset="1"><![CDATA[<td><?php echo $entry_keyword; ?></td>]]></search>
+            <add><![CDATA[            <tr>
+              <td><?php echo $entry_option_id; ?></td>
+              <td>
+			<div class="scrollbox">
+			      <?php foreach($options as $option) { ?>
+				  <input id="option_id_<?php echo $option['option_id']; ?>" type="radio" name="option_id" value="<?php echo $option['option_id']; ?>" <?php if($option['option_id'] == $option_id) { echo 'checked="checked"'; } ?>/>
+				  <label for="option_id_<?php echo $option['option_id']; ?>"><?php echo $option['name']; ?></label><br/>
+			      <?php } ?>
+			</div>
+	      </td>
+            </tr>]]>
+            </add>
+        </operation>
+    </file>
+</modification>

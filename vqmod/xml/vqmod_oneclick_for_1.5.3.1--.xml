@@ -1,0 +1,348 @@
+<modification>
+	<id>Заказ в один клик</id>
+	<version>1</version>
+	<vqmver>1.0.0</vqmver>
+	<author>freelancer, VQMod - rmonax</author>
+
+	<file name="catalog/language/english/english.php">
+		<operation>
+            <search position="after"><![CDATA[
+ 			$_['button_quote']
+            ]]></search>
+            <add><![CDATA[
+$_['text_order_one_click']   = 'Buy';
+$_['text_one_click']         = 'Buy one click';
+$_['text_one_click_wrong']   = 'Wrong number format. Telephone must be between 3 and 32 characters!';
+$_['text_one_click_firstname']  = 'Buy one click (%s)';
+            ]]></add>
+        </operation>
+	</file>
+	
+	
+	<file name="catalog/language/russian/russian.php">
+		<operation>
+            <search position="after"><![CDATA[
+ 			$_['button_quote']
+            ]]></search>
+            <add><![CDATA[
+$_['text_order_one_click']   = 'Заказать';
+$_['text_one_click']         = 'Заказать в 1 клик';
+$_['text_one_click_wrong']   = 'Неверный формат номера. Укажите только цифры, например 2345433111.';
+$_['text_one_click_firstname']  = 'Заказ в 1 клик (%s)';
+            ]]></add>
+        </operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/account/wishlist.tpl">
+		<operation>
+            <search position="replace"><![CDATA[
+ 			title="<?php echo $button_remove; ?>" /></a>
+            ]]></search>
+            <add><![CDATA[
+			title="<?php echo $button_remove; ?>" /></a>
+			  <br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/common/header.tpl">
+	    <operation>
+            <search position="after"><![CDATA[
+ 			<?php echo $google_analytics; ?>
+            ]]></search>
+            <add><![CDATA[
+	<style type="text/css">
+		.one-click-order, .buy_one_click, #button-oneclick {
+			cursor: pointer;
+			border-bottom: 1px dashed;
+			text-decoration: none;
+		}
+	</style>
+	<script type="text/javascript">
+(function($) {
+  var oldHTML = $.fn.html;
+
+  $.fn.formhtml = function() {
+    if (arguments.length) return oldHTML.apply(this,arguments);
+    $("input,button", this).each(function() {
+      this.setAttribute('value',this.value);
+    });
+    $("textarea", this).each(function() {
+      // updated - thanks Raja!
+      this.innerHTML = this.value;
+    });
+    $("input:radio,input:checkbox", this).each(function() {
+      // im not really even sure you need to do this for "checked"
+      // but what the heck, better safe than sorry
+      if (this.checked) this.setAttribute('checked', 'checked');
+      else this.removeAttribute('checked');
+    });
+    $("option", this).each(function() {
+      // also not sure, but, better safe...
+      if (this.selected) this.setAttribute('selected', 'selected');
+      else this.removeAttribute('selected');
+    });
+    return oldHTML.apply(this);
+  };
+
+  //optional to override real .html() if you want
+  // $.fn.html = $.fn.formhtml;
+})(jQuery);
+
+		$(document).ready(function(){
+			$('.one-click-order').live('click', function() {
+				var template = '<div >'+
+					  '<form>'+
+					  '<div>'+
+						  '<div style="min-width: 250px;">'+
+							  '<table>'+
+								  '<tr>'+
+									  '<td><img title="' +$(this).attr('product_name') + '" alt="' +$(this).attr('product_name') + '" src="' +$(this).attr('thumb') + '"></td>'+
+									  '<td><a href="' +$(this).attr('product_href') + '">' +$(this).attr('product_name') + '</a></td>'+
+									  '<td>' +$(this).attr('price') + '</td>'+
+								  '</tr>'+
+							  '</table>';
+
+						  var options = $(this).parents('.cart').siblings('.options');
+						  if(options.length > 0){
+                              template +=options.formhtml();
+						  }
+
+							  template += '<div class="phone" style="height: 80px;">'+
+								  '<span>+7</span>'+
+								  '<input type="input" name="phone">&nbsp;<span class="buy_one_click"><?php echo $this->language->get('text_order_one_click')?></span>'+
+								  '<input name="product_id" type="hidden" value="' +$(this).attr('product_id') + '">'+
+								  '<div class="phone_error" style="color:#860000; width: 200px; height: 45px">'+
+								  '</div>'+
+							  '</div>'+
+							  '<div>'+
+								  '<?php echo $this->language->get('text_one_click')?>'+
+							  '</div>'+
+						  '</div>'+
+					  '</div>'+
+					'</form>'+
+				  '</div>';
+				$.colorbox({html:template})
+			});
+			var	intRegex = /[0-9 -()+]+$/;
+			$('.buy_one_click').live('click', function() {
+
+                if ($('.buy_one_click').hasClass('disabled')) {
+                    return;
+                }
+
+				var form = $(this).parents('form');
+				form.find('.phone_error').html('');
+				phone = form.find('input[name="phone"]').val();
+
+				if((phone.length < 4) || (!intRegex.test(phone))){
+					form.find('.phone_error').html('<?php echo $this->language->get('text_one_click_wrong'); ?>');
+					return;
+				}
+
+				post_data = form.serialize();
+				$.ajax({
+					type:'post',
+					url:'index.php?route=module/oneclick/order',
+					data:post_data,
+					dataType:'json',
+                    beforeSend: function() {
+                        $('.buy_one_click').addClass('disabled');
+                        $('.buy_one_click').after('<span class="wait">&nbsp;<img src="catalog/view/theme/mattimeo/image/loading.gif" alt="" /></span>');
+                    },
+                    complete: function() {
+                        $('.buy_one_click').removeClass('disabled');
+                        $('.wait').remove();
+                    },
+					success:function(data){
+						form.html(data);
+					}
+				});
+			});
+		});
+	</script>
+            ]]></add>
+        </operation>
+	</file>	
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/module/bestseller.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+<br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>	
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/module/featured.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+<br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>	
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/module/latest.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+<br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/product/category.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+			<br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>
+	
+
+	<file name="catalog/view/theme/mattimeo/template/product/compare.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+			<br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/product/manufacturer_info.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+			<br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/product/product.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+			  <br/><br/><input type="text" id="one_click_phone" name="phone">&nbsp;<a id="button-oneclick"><?php echo $this->language->get('text_one_click'); ?></a>
+            <br/><div class="phone_error" style="color:#860000"></div>
+            ]]></add>
+        </operation>
+	
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button"><?php echo $button_cart; ?></a>
+            ]]></search>
+            <add><![CDATA[
+			class="button"><?php echo $button_cart; ?></a>
+			  <br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[<?php echo $content_bottom; ?></div>]]>
+            </search>
+            <add><![CDATA[
+                <script type="text/javascript">
+                <!--
+                var	intRegex = /[0-9 -()+]+$/;
+
+                $('#button-oneclick').bind('click', function() {
+                    var product_info = $(this).parents('.product-info');
+                    product_info.find('.phone_error').html('');
+                    phone = product_info.find('input[name="phone"]').val();
+                    if((phone.length < 4) || (!intRegex.test(phone))){
+                        product_info.find('.phone_error').html('<?php echo $this->language->get('text_one_click_wrong'); ?>');
+                        return;
+                    }
+
+                    $.ajax({
+                        url: 'index.php?route=module/oneclick/order',
+                        type: 'post',
+                        data: $('.product-info input[type=\'text\'], .product-info input[name=\'phone\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
+                        dataType: 'json',
+                        success: function(json) {
+                            $('#notification').html('<div class="success" style="display: none;">' + json + '<img src="catalog/view/theme/mattimeo/image/close.png" alt="" class="close" /></div>');
+                            $('.success').fadeIn('slow');
+                            $('html, body').animate({ scrollTop: 0 }, 'slow');
+                        }
+                    });
+                });
+                //--></script>
+]]></add>
+        </operation>
+
+	</file>
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/product/search.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			<?php echo $product['product_id']; ?>');" class="button" />
+            ]]></search>
+            <add><![CDATA[
+			<?php echo $product['product_id']; ?>');" class="button" />
+			  <br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/mattimeo/template/product/special.tpl">
+	    <operation>
+            <search position="replace"><![CDATA[
+ 			class="button" />
+            ]]></search>
+            <add><![CDATA[
+			class="button" />
+			  <br/><a class="one-click-order" product_id="<?php echo $product['product_id']; ?>" product_name="<?php echo $product['name']?>"
+				  thumb="<?php echo $product['thumb']?>" product_href="<?php echo $product['href']?>" price="<?php if ($product['special']) { echo $product['special']; } else { echo $product['price']; }  ?>"><?php echo $this->language->get('text_one_click'); ?></a>
+            ]]></add>
+        </operation>
+	</file>
+    <file name="catalog/model/checkout/order.php">
+        <operation>
+            <search position="after" index="2"><![CDATA[				$text .= $language->get('text_new_order_id') . ' ' . $order_id . "\n";]]></search>
+            <add>
+                $text .= $language->get('text_new_telephone') . ' ' . $order_info['telephone'] . "\n";
+            </add>
+    </operation>
+    </file>
+</modification>

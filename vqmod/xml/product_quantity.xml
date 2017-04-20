@@ -1,0 +1,232 @@
+<modification>
+	<id>Tracking Number</id>
+	<version>1.5.x</version>
+	<vqmver>2.X</vqmver>
+	<author>marsilea15@gmail.com</author>
+	
+	<file name="catalog/view/theme/*/template/common/header.tpl">
+		<operation>
+			<search position="replace"><![CDATA[</head>]]></search>
+			<add><![CDATA[
+					<style type="text/css">
+						<?php echo $this->config->get( 'product_quantity_css' ); ?>
+					</style>
+				
+					<script type="text/javascript">
+						function pq_setQuantity( $input, add ) {
+							var val = pq_getQuantity( $input );
+								
+							val += 1 * ( add ? 1 : -1 );
+								
+							if( val < 1 )
+								val = 1;
+								
+							$input.attr('value', val.toString()).val( val.toString() );
+						}				
+						
+						function pq_getQuantity( $input ) {
+							var val = parseInt( $input.val() );
+								
+							if( typeof val == 'NaN' || val < 1 )
+								val = 1;
+								
+							return val;
+						}
+						
+						function pq_plus( $item ) {
+							pq_setQuantity( $item.find('.product-quantity-input'), true );
+						}
+						
+						function pq_minus( $item ) {
+							pq_setQuantity( $item.find('.product-quantity-input'), false );
+						}
+						
+						function pq_addToCart( product_id, $item ) {
+							return addToCart( product_id, pq_getQuantity( $item.parent().find('.product-quantity-input') ) );
+						}
+					
+						$().ready(function(){
+							$('[data-type][data-active=1]').each(function(){
+								var $items	= null
+									fn		= null,
+									type	= $(this).attr('data-type');
+							
+								switch( type ) {
+									case 'v-category' :
+									case 'v-search' :
+									case 'v-manufacturer' :
+									case 'm-latest' :
+									case 'm-special' :
+									case 'm-featured' :
+									case 'm-bestseller' : {
+										$items	= type == 'v-category' || type == 'v-search' || type == 'v-manufacturer' ? $(this) : $(this).find('[onclick^=addToCart]');
+										fn		= function( $this, $input, $plus, $minus, $div ){
+											
+											$div.append( $input );
+											
+											$div.append( $plus );$div.append( $minus );
+										
+											$this
+												.before( $div )
+												.attr( 'onclick', 'pq_addToCart( ' + $this.attr('onclick').match(/[0-9]+/) + ', $(this) )' );
+										}
+										
+										break;
+									}
+									case 'v-product' : {
+										$items		= $(this).parent().parent().find('[id=button-cart]');
+										fn			= function( $this, $input, $plus, $minus, $div ) {
+											var $q = $this.parent().parent().find('[name=quantity]');
+											
+											$q.parent().addClass( 'product-quantity-container' );
+											$q.after( $minus );
+											$q.after( $plus );
+											$q.addClass( 'product-quantity-input' );
+										}
+										
+										break;
+									}
+									case 'v-cart' : {
+										$items		= $(this).parent().find('[name^=quantity]');
+										fn			= function( $this, $input, $plus, $minus, $div ) {
+											var $q = $this;
+											
+											$q.parent().addClass( 'product-quantity-container' );
+											$q.after( $minus );
+											$q.after( $plus );
+											$q.addClass( 'product-quantity-input' );
+										}
+										
+										break;
+									}
+								}
+								
+								if( $items === null || fn === null ) return;
+								
+								$items.each(function(){								
+									var $input	= $('<input>')
+											.attr({
+												'class'	: 'product-quantity-input',
+												'type'	: 'text',
+												'value'	: '1',
+												'size'	: '1'
+											}),
+										$plus	= $('<input>')
+											.attr({
+												'class'	: 'product-quantity-button but_plus',
+												'type'	: 'button',
+												'value'	: '+'
+											})
+											.attr('onclick', 'pq_plus( $(this).parent() )'),
+										$minus	= $('<input>')
+											.attr({
+												'class'	: 'product-quantity-button but_minus',
+												'type'	: 'button',
+												'value'	: '-'
+											})
+											.attr('onclick', 'pq_minus( $(this).parent() )'),
+										$div = $('<div>')
+											.addClass( 'product-quantity-container' );
+									
+									fn( $(this), $input, $plus, $minus, $div );
+								});
+							});
+						});
+					</script>
+				</head>			
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- // MODULE FEATURED //////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/module/featured.tpl">
+		<operation>
+			<search position="top"><![CDATA[]]></search>
+			<add><![CDATA[<div data-type="m-featured" data-active="<?php echo $this->config->get( 'product_quantity_m_featured' ); ?>">]]></add>
+		</operation>
+		<operation>
+			<search position="bottom"><![CDATA[]]></search>
+			<add><![CDATA[</div>]]></add>
+		</operation>
+	</file>
+	
+	<!-- // MODULE LATEST ////////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/module/latest.tpl">
+		<operation>
+			<search position="top"><![CDATA[]]></search>
+			<add><![CDATA[<div data-type="m-latest" data-active="<?php echo $this->config->get( 'product_quantity_m_latest' ); ?>">]]></add>
+		</operation>
+		<operation>
+			<search position="bottom"><![CDATA[]]></search>
+			<add><![CDATA[</div>]]></add>
+		</operation>
+	</file>
+	
+	<!-- // MODULE SPECIALS //////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/module/special.tpl">
+		<operation>
+			<search position="top"><![CDATA[]]></search>
+			<add><![CDATA[<div data-type="m-special" data-active="<?php echo $this->config->get( 'product_quantity_m_special' ); ?>">]]></add>
+		</operation>
+		<operation>
+			<search position="bottom"><![CDATA[]]></search>
+			<add><![CDATA[</div>]]></add>
+		</operation>
+	</file>
+	
+	<!-- // MODULE BESTSELLERS ///////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/module/bestseller.tpl">
+		<operation>
+			<search position="top"><![CDATA[]]></search>
+			<add><![CDATA[<div data-type="m-bestseller" data-active="<?php echo $this->config->get( 'product_quantity_m_bestsellers' ); ?>">]]></add>
+		</operation>
+		<operation>
+			<search position="bottom"><![CDATA[]]></search>
+			<add><![CDATA[</div>]]></add>
+		</operation>
+	</file>
+	
+	<!-- // VIEW CATEGORY ////////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/product/category.tpl">
+		<operation>
+			<search position="replace"><![CDATA[onclick="addToCart]]></search>
+			<add><![CDATA[data-type="v-category" data-active="<?php echo $this->config->get( 'product_quantity_v_category' ); ?>" onclick="addToCart]]></add>
+		</operation>
+	</file>
+	
+	<!-- // VIEW SEARCH //////////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/product/search.tpl">
+		<operation>
+			<search position="replace"><![CDATA[onclick="addToCart]]></search>
+			<add><![CDATA[data-type="v-category" data-active="<?php echo $this->config->get( 'product_quantity_v_category' ); ?>" onclick="addToCart]]></add>
+		</operation>
+	</file>
+	
+	<!-- // VIEW MANUFACTURER ////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/product/manufacturer_info.tpl">
+		<operation>
+			<search position="replace"><![CDATA[onclick="addToCart]]></search>
+			<add><![CDATA[data-type="v-category" data-active="<?php echo $this->config->get( 'product_quantity_v_category' ); ?>" onclick="addToCart]]></add>
+		</operation>
+	</file>
+	
+	<!-- // VIEW CART ////////////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/checkout/cart.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<input type="text" name="quantity]]></search>
+			<add><![CDATA[<div data-type="v-cart" data-active="<?php echo $this->config->get( 'product_quantity_v_cart' ); ?>" style="display:none"></div><input type="text" name="quantity]]></add>
+		</operation>
+	</file>
+//////////////////////////////////////////////////// -->
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="replace"><![CDATA[onclick="addToCart]]></search>
+			<add><![CDATA[data-type="v-category" data-active="<?php echo $this->config->get( 'product_quantity_v_category' ); ?>" onclick="addToCart]]></add>
+		</operation>
+	</file>
+	
+	<!-- // VIEW MANUFACTURER ////////////////////////////////////////////// -->
+	
+	
+
+</modification>

@@ -1,0 +1,41 @@
+<modification>
+	<id>Mattimeo Additional images and quickview</id>
+	<version>1.6.x</version>
+	<vqmver>2.4.1</vqmver>
+	<author>Mattimeo</author>
+
+	<file name="catalog/controller/module/filterpro.php">
+				<operation>
+			<search position="before"><![CDATA[
+			'special'     => $special,
+			]]></search>
+			
+			<add><![CDATA[
+			'quickview'        => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
+			'saving'	 => round((($result['price'] - $result['special'])/($result['price'] + 0.01))*100, 0),
+			'dop_img' => $dop_img,
+			
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			if ($result['image']) {
+			]]></search>
+			
+			<add><![CDATA[
+			$results_img = $this->model_catalog_product->getProductImages($result['product_id']);
+                $dop_img = array();
+                foreach ($results_img as $result_img) {
+                if ($result_img['image']) {
+                $image_dop = $this->model_tool_image->resize($result_img['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+                } else {
+                $image_dop = false;
+                }
+                 $dop_img[] = $image_dop;
+                }
+			
+			]]></add>
+		</operation>
+	</file>
+	
+</modification>

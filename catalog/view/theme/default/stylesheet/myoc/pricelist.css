@@ -1,0 +1,71 @@
+.filter-control {
+	padding: 5px 0;
+	border-bottom: 1px solid #ddd;
+	overflow: auto;
+}
+.fleft {
+	float: left;
+}
+.fright {
+	float: right;
+}
+.or {
+	color: #999;
+	margin: 5px 0;
+}
+.print-control {
+	margin: 5px 0;
+	overflow: auto;
+}
+.pricelist {
+	overflow: auto;
+}
+.pricelist table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+	margin-bottom: 10px;
+}
+.pricelist table th, .pricelist table td {
+	border: 1px solid #ddd;
+	border-width: 1px;
+}
+.pricelist table th {
+	padding: 7px;
+	background-color: #F7F7F7;
+	text-align: center;
+}
+.pricelist table th a {
+	text-decoration: none;
+	padding-right: 15px;
+	background: url('../../image/sort.png') right center no-repeat;
+}
+.pricelist table td {
+	padding: 5px;
+}
+.pricelist table td.checkbox,
+.pricelist table td.image,
+.pricelist table td.action {
+	text-align: center;
+}
+.pricelist table td.image img {
+	padding: 3px;
+	border: 1px solid #ddd;
+}
+.pricelist table td .price {
+	font-weight: bold;
+}
+.pricelist table td .price-old {
+	text-decoration: line-through;
+}
+.pricelist table td .price-new {
+	color: #f00;
+	font-weight: bold;
+}
+.pricelist table td .discount {
+	margin-top: 10px;
+	color: #666;
+}
+.pricelist table td .nostock {
+	color: #c00;
+}

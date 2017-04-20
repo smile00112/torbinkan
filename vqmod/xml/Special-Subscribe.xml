@@ -1,0 +1,42 @@
+<modification>
+
+	<id>Newsletter Subscribe</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>DariyGRAY</author>
+	
+	<file name="admin/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[
+            $this->data['heading_title'] = $this->language->get('heading_title');
+            ]]></search>
+			<add><![CDATA[
+            $this->data['text_specialsubscribe'] = $this->language->get('text_specialsubscribe');
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="before"><![CDATA[
+            $this->data['stores'] = array();
+            ]]></search>
+			<add><![CDATA[
+            $this->data['specialsubscribe'] = $this->url->link('sale/specialsubscribers', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/language/russian/common/header.php">
+		<operation>
+			<search position="before"><![CDATA[
+			?>
+            ]]></search>
+			<add><![CDATA[
+			$_['text_specialsubscribe']     = 'Подписчики на акции';
+            ]]></add>
+		</operation>
+	</file>
+	
+  
+
+  
+	
+</modification>

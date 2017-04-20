@@ -1,0 +1,338 @@
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+.oform {
+	font-family:Arial,sans-serif;
+    background: none repeat scroll 0 0 #f9f9f9;
+    margin: 10px auto 0;
+    width: 100%;
+//    width: 510px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+	-moz-border-radius:3px;
+	-khtml-border-radius:3px;
+	-webkit-border-radius:3px;
+    display: block;
+    position: relative;
+}
+.hide-form {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: black;
+    opacity: 0.4;
+    display: none;
+}
+.of-success {
+    margin: 10px auto 0;
+    width: 510px;
+}
+.oform fieldset	{ 
+	margin:0; 
+	padding:5px 0 15px 0; 
+	border:0; 
+}
+
+.oform .of_hidden {
+	display:none; 
+	border:none!important;
+	background:none!important;
+	padding:0!important;
+	margin:0!important;
+}
+
+.oform legend { 
+    background: none repeat scroll 0 0 #eaeaea;
+    border-radius: 0 3px 3px 0;
+	-moz-border-radius:0 3px 3px 0;
+	-khtml-border-radius:0 3px 3px 0;
+	-webkit-border-radius:0 3px 3px 0;	
+    color: #777777;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 2px 7px 3px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.oform fieldset:first-child legend { 
+    border-radius: 0 0 3px 0;
+	-moz-border-radius:0 0 3px 0;
+	-khtml-border-radius:0 0 3px 0;
+	-webkit-border-radius:0 0 3px 0;
+}
+
+ol.of-ol { 
+	margin:0!important; 
+	padding:0!important;
+}
+
+ol.of-ol li	{
+	background:none!important; 
+	margin:10px 0!important;
+	padding:0; 
+	list-style:none!important; 
+	text-align:left;
+	line-height:1.3em;
+}
+li.of-html {
+    margin: 10px !important;
+    padding: 0 10px 0 10px !important;
+}
+
+.oform label {
+    color: #555555;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1.3em;
+    margin: 0.6em 1% 0.5em 1%;
+//    text-align: right;
+    vertical-align: top;
+    width: 20%;
+}
+.oform span.error label {
+    color: #FF0000;
+    display: inline;
+    margin: 0;
+    text-align: left;
+    width: 80%;
+}
+.oform span.error {
+    text-align: center;
+}
+.oform input.error, .oform select.error, .oform textarea.error {
+    display: inline  !important;
+    border: 1px solid #FF0000 !important;
+}
+
+label.of-before {
+	margin:0.4em 5px; 
+}
+
+label.of-after 	{
+	margin:0.4em 5px;
+	text-align:left;
+	width:115px;
+}
+label.of-lc {
+    width: 150px;
+}
+
+
+
+.oform textarea,
+.oform select { 
+	text-shadow: 0 1px 0 #FFFFFF;
+	color: #111111;
+    font-size: 1.0em;
+    padding: 5px 10px;
+	
+	background: #f9f9f9; 
+	border: 1px solid #e2e2e2; 
+	vertical-align:top;
+
+	box-shadow: none;	
+	background: #f7f7f7; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f7f7f7 0%, #eeeeee 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* IE10+ */
+	background: linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+}
+/*
+.oform input:hover,
+.oform textarea:hover,
+.oform select:hover	{
+background: #ffffff; 
+background: -moz-linear-gradient(top,  #ffffff 0%, #efefef 100%); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); 
+background: -webkit-linear-gradient(top,  #ffffff 0%,#efefef 100%); 
+background: -o-linear-gradient(top,  #ffffff 0%,#efefef 100%); 
+background: -ms-linear-gradient(top,  #ffffff 0%,#efefef 100%);
+background: linear-gradient(top,  #ffffff 0%,#efefef 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); 
+}
+*/
+.oform input:hover,
+.oform textarea:hover,
+.oform select:hover,
+.oform input:focus,
+.oform textarea:focus,
+.oform select:focus	{ 
+	text-shadow: none;
+	border: 1px solid #999; 
+	background: #fff;
+	box-shadow: 0 1px 2px #ccc inset;
+}
+
+.oform textarea,
+.oform input[type='text'] {
+	width: 65%;padding: 6px 4px 6px 4px;
+}
+.oform input.captcha {
+    width: 50%;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+.oform select {
+	padding: 2px 5px;
+    width: 69%; 
+}  
+
+.oform select.cfselectmulti	{ 
+	height:7.5em; 
+}
+
+.oform textarea {
+	font-family: arial;
+	font-size: 0.9em;
+	overflow:auto;
+	resize:none;
+}
+
+.oform input.of-box-c, .oform input.of-box-r {
+    background: none repeat scroll 0 0 transparent !important;
+    border: medium none !important;
+    height: 14px;
+    margin: 1px 0 0;
+    width: 14px;
+}                                            
+ul.of-sub {
+      padding-left: 0%;
+    display: inline-block;
+}
+ul.of-sub li {
+    margin: 5px 0 !important;
+}
+
+p.of-sb {
+//	text-align:right;
+	padding: 0!important;
+	margin: 0;
+}
+.oform input.backbutton,
+.oform input.resetbutton,
+.oform input.sendbutton	{  
+	padding:5px 10px; 
+	margin: 0 0 0 5px;
+	font-size:0.9em;
+	cursor:pointer;
+	width:auto;
+
+    border-radius: 3px 0 0 0;
+	-moz-border-radius:3px 0 0 0;
+	-khtml-border-radius:3px 0 0 0;
+	-webkit-border-radius:3px 0 0 0;
+
+	border:1px solid #ccc;
+	
+	background: #f7f7f7; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f7f7f7 1%, #e5e5e5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#f7f7f7), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* IE10+ */
+	background: linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+}
+.oform input.backbutton:hover,
+.oform input.resetbutton:hover,
+.oform input.sendbutton:hover {
+	border:1px solid #aaa;
+	background: #fdfdfd; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f7f7f7 1%, #c1c1c1 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#f7f7f7), color-stop(100%,#c1c1c1)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* IE10+ */
+	background: linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#c1c1c1',GradientType=0 ); /* IE6-9 */
+}
+.oform input.resetbutton {
+	width: auto;
+	padding:5px 1em;
+}
+.oform input.backbutton {
+	width: auto;
+	padding:5px 1em;
+}
+
+
+
+.oform input.of_upload  {
+	width:220px;
+	background: #f9f9f9;
+	border:1px solid #888888;
+}
+
+
+ .of-sb  a.button,.of-sb  input.button{
+    background-color: #FF9673;
+}
+.of-sb  a.button:hover,.of-sb  input.button:hover{
+    background-color: #fff;
+color: #FF9673;
+}
+.form_spec{
+text-align:center;
+padding-bottom: 10px;
+}
+/*
+* html .oform fieldset {
+	position: relative;
+	margin-top:15px;
+	padding-top:25px; 
+}
+* html .oform legend { 
+	position:absolute; 
+	top: -10px; 
+	left: 10px; 
+	margin-left:0;
+}
+*+html .oform fieldset {
+	position: relative;
+	margin-top:15px;
+	padding-top:25px; 
+}
+*+html .oform legend { 
+	position:absolute; 
+	top: -10px; 
+	left: 10px; 
+	margin-left:0;
+}
+/*for ie6*/
+/*
+* html ol.of-ol,
+* html ol.of-ol li,
+* html span.reqtxt,
+* html span.emailreqtxt { 
+	display: inline-block;  
+}
+*/
+/*for ie7*/
+/*
+*+html .oform label,
+*+html ol.of-ol,
+*+html ol.of-ol li,
+*+html span.reqtxt,
+*+html span.emailreqtxt {
+	display: inline-block; 
+}
+
+* html img.captcha {
+	margin-bottom:1px!important;
+}
+*+html img.captcha {
+	margin-bottom:1px!important;
+}
+*/

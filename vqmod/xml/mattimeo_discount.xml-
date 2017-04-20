@@ -1,0 +1,63 @@
+<modification>
+	<id>Mattimeo - catalog - controller - module</id>
+	<version>1.6.x</version>
+	<vqmver>2.4.71</vqmver>
+	<author>mattimeo</author>
+	
+	//featured
+	<file name="catalog/controller/module/featured.php">
+		<operation>
+		<search position="after"><![CDATA[
+		'special' 	 => $special,
+		]]></search>
+
+		<add><![CDATA[
+		'saving'	=> round((($product_info['price'] - $product_info['special'])/($product_info['price'] + 0.01))*100, 0),
+		]]></add>
+	</operation>
+	</file>
+	<file path="catalog/controller/module/" name="bestseller.php,latest.php,special.php">
+		<operation>
+		<search position="after"><![CDATA[
+		'special' 	 => $special,
+		]]></search>
+
+		<add><![CDATA[
+		'saving'	 => round((($result['price'] - $result['special'])/($result['price'] + 0.01))*100, 0),
+		]]></add>
+	</operation>
+	</file>
+	<file path="catalog/view/theme/mattimeo/template/module/" name="bestseller.tpl,latest.tpl,special.tpl,featured.tpl">
+    <operation>
+		<search position="before"><![CDATA[
+		<span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+		]]></search>
+
+		<add><![CDATA[
+		<div class="savemoney">- <?php echo $product['saving']; ?>%</div>
+		]]></add>
+	</operation>
+   </file>
+   <file name="catalog/controller/product/product.php">
+		<operation>
+		<search position="before"><![CDATA[
+		$this->data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+		]]></search>
+
+		<add><![CDATA[
+		$this->data['saving'] = round((($product_info['price'] - $product_info['special'])/($product_info['price'] + 0.01))*100, 0);
+		]]></add>
+	</operation>
+	</file>
+	 <file path="catalog/controller/product/" name="category.php,manufacturer.php,search.php,special.php">
+		<operation>
+		<search position="after"><![CDATA[
+		'special'     => $special,
+		]]></search>
+
+		<add><![CDATA[
+		'saving'      => round((($result['price'] - $result['special'])/($result['price'] + 0.01))*100, 0),
+		]]></add>
+	</operation>
+	</file>
+</modification>

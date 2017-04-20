@@ -1,0 +1,51 @@
+<modification>
+
+	<id>Newsletter Subscribe</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>DariyGRAY</author>
+	
+	<file name="admin/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[
+            $this->data['heading_title'] = $this->language->get('heading_title');
+            ]]></search>
+			<add><![CDATA[
+            $this->data['text_pricesubscribe'] = $this->language->get('text_pricesubscribe');
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="before"><![CDATA[
+            $this->data['stores'] = array();
+            ]]></search>
+			<add><![CDATA[
+            $this->data['pricesubscribe'] = $this->url->link('sale/pricesubscribers', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/language/russian/common/header.php">
+		<operation>
+			<search position="before"><![CDATA[
+			?>
+            ]]></search>
+			<add><![CDATA[
+			$_['text_pricesubscribe']     = 'Подписчики на оптовый прайс';
+            ]]></add>
+		</operation>
+	</file>
+	
+  
+
+    <file name="admin/view/template/common/header.tpl">
+		<operation>
+			<search position="after"><![CDATA[
+            <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
+            ]]></search>
+			<add><![CDATA[
+            <li><a href="<?php echo $pricesubscribe; ?>"><?php echo $text_pricesubscribe; ?></a></li>
+            ]]></add>
+		</operation>
+	</file>
+	
+</modification>

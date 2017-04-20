@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+  <id>Безналичный перевод ++</id>
+  <version>1.0.0</version>
+  <vqmver>2.0.0</vqmver>
+  <author>ashap08@ya.ru</author>
+  <file name="catalog/view/theme/*/template/account/order_list.tpl">
+    <operation>
+      <search position="after">
+        <![CDATA[ <?php echo $order['status']; ?></div> ]]>
+      </search>
+      <add>
+        <![CDATA[ <div class="cash_plusplus"><?php
+          $totalsbez = ltrim(preg_replace('/[^0-9.]/', '', $order['total']) , " .");
+          if ($order['payment_code'] == "cash_plusplus"){
+          echo '<a href="index.php?route=account/cash_plusplus/view&sum=' . urlencode(intval($totalsbez)) . '&plat='.urlencode($order['name']).'&onum='.$order['order_id'].'" target="_blank">Просмотр счета</a><br /><a href="index.php?route=account/cash_plusplus&sum=' . intval($order['total']) . '&plat='.$order['name'].'&onum='.$order['order_id'].'">Скачать счет</a>';
+          }
+          ?></div> ]]>
+      </add>
+    </operation>
+  </file>
+  <file name="admin/controller/sale/order.php">
+    <operation>
+       <search position="before">
+       <![CDATA[ $this->template = 'sale/order_info.tpl'; ]]>
+       </search>
+       <add>
+       <![CDATA[
+       $this->data['cash_plusplus_code'] = $order_info['payment_code'];
+       $this->data['cash_plusplus_link'] = $order_info['store_url'] . 'index.php?route=account/cash_plusplus/view&sum=' . intval($order_info['total']) . '&plat=' . $order_info['firstname'] . '+' . $order_info['lastname'] . '&onum=' . $order_info['order_id'] ;
+       ]]>
+       </add>
+    </operation>
+  </file>
+  <file name="admin/view/template/sale/order_info.tpl">
+    <operation>
+    <search position="after" offset="1">
+       <![CDATA[ <div id="history"></div> ]]>
+    </search>
+    <add>
+         <![CDATA[ <?php if ($cash_plusplus_code == "cash_plusplus"){ ?>
+         <tr>
+            <td>Ссылка на счет</td>
+            <td><a href="<?php echo $cash_plusplus_link; ?>" target="_blank"><?php echo $cash_plusplus_link; ?></a></td>
+          </tr>
+          <?php } ?> ]]>
+    </add>
+  </operation>
+  </file>
+</modification>

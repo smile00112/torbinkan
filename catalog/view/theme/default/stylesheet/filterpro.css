@@ -1,0 +1,209 @@
+#filterpro .option_box {
+    display: inline-block;
+    vertical-align: top;
+	    width: 100%;
+}
+.filterpro{
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    background: #edeef8;
+	margin: 5px 0px 0px 0px;
+    padding: 0px 10px 20px 10px;
+}
+#filterpro .price_limit {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8184a1;
+    text-align: center;
+    line-height: 22px;
+    border: 1px solid #dee0ee;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    background: #fff;
+	    width: 73px;
+    height: 28px;
+}
+
+#filterpro .ui-widget-header {
+    background: #13a4ff;
+    border: 0 none;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+#filterpro select {
+    width: 126px;
+}
+
+#filterpro .ui-state-hover, #filterpro .ui-state-focus, #filterpro .ui-state-active {
+    border: 1px solid #9ebad3;
+    background: none repeat scroll 0 0 #d9f2fc;
+}
+
+#filterpro .price_slider {
+    padding: 5px 9px;
+}
+
+#filterpro .price_slider  input {
+     width: 74px;
+	 padding: 0px;
+	margin: 0px 0px 15px 0px;
+}
+
+#filterpro .option_values {
+    padding-top: 5px;
+}
+
+#filterpro .option_name, #filterpro .attribute_group_name {
+    cursor: pointer;
+        padding: 17px 10px 6px 10px;
+}
+#filterpro .option_name span, #filterpro .attribute_group_name span {
+	font-size: 14px;
+    font-weight: 700;
+    color: #575b71;
+	    -webkit-transition: all 0.15s ease 0s;
+    -moz-transition: all 0.15s ease 0s;
+    -o-transition: all 0.15s ease 0s;
+    transition: all 0.15s ease 0s;
+    border-bottom: 1px dashed;
+
+}
+#filterpro .option_name:hover span, #filterpro .attribute_group_name:hover  span{
+	color:#cc9900;
+	border-bottom:1px dashed transparent;
+}
+#filterpro .option_name:hover i, #filterpro .attribute_group_name:hover  i{
+	color:#cc9900;
+	}
+#filterpro .option_name i {
+    vertical-align: middle;
+    margin: 0px;
+    padding: 0px 0px 0px 9px;
+    font-size: 18px;
+    color: #a0a4bc;
+    -webkit-transition: all 0.15s ease 0s;
+    -moz-transition: all 0.15s ease 0s;
+    -o-transition: all 0.15s ease 0s;
+    transition: all 0.15s ease 0s;
+  -moz-transform: rotate(0deg); /* Äëÿ Firefox */
+    -ms-transform: rotate(0deg); /* Äëÿ IE */
+    -webkit-transform: rotate(0deg); /* Äëÿ Safari, Chrome, iOS */
+    -o-transform: rotate(0deg); /* Äëÿ Opera */
+    transform: rotate(0deg);
+}
+#filterpro .hided i {
+    vertical-align: middle;
+    margin: 0px;
+	padding: 0px 9px 0px 0px;
+    
+    font-size: 18px;
+    color: #a0a4bc;
+    -webkit-transition: all 0.15s ease 0s;
+    -moz-transition: all 0.15s ease 0s;
+    -o-transition: all 0.15s ease 0s;
+    transition: all 0.15s ease 0s;
+	  -moz-transform: rotate(180deg); /* Äëÿ Firefox */
+    -ms-transform: rotate(180deg); /* Äëÿ IE */
+    -webkit-transform: rotate(180deg); /* Äëÿ Safari, Chrome, iOS */
+    -o-transform: rotate(180deg); /* Äëÿ Opera */
+    transform: rotate(180deg);
+}
+
+#filterpro  .ui-state-default,#filterpro .ui-widget-content .ui-state-default{
+    text-align: center;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.36);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.36);
+    background: #13a4ff;
+}
+#filterpro .ui-slider-horizontal {
+    height: .6em;
+	background: #a0daff;
+	border: 0 none;
+	    width: 99%;
+}
+#filterpro .attribute_group_name{
+    padding-left: 0;
+}
+
+#filterpro .hided {
+    cursor: pointer;
+}
+
+#filterpro_box .clear_filter {
+    border-bottom: 1px dashed;
+    text-decoration: none;
+    float: right;
+}
+
+#filterpro .collapsible{
+	min-height:62px;
+}
+
+#filterpro .collapsible tr{
+font-family: "Open Sans", sans-serif;
+    color: #575b71;
+    line-height: 30px;
+    display: block;
+    margin: 0px;
+    padding: 0px 12px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-transition: all 0.15s ease 0s;
+    -moz-transition: all 0.15s ease 0s;
+    -o-transition: all 0.15s ease 0s;
+    transition: all 0.15s ease 0s;
+}
+
+#filterpro .collapsible tr:hover{
+    background: #dee0ee;
+}
+#filterpro .collapsible td{
+    line-height: 22px;
+}
+#filterpro .collapsible td .count {
+    height: 15px;
+    display: inline-block;
+    margin: 0px 0px 0px 7px;
+    padding: 0px 5px;
+    font-size: 10px;
+    color: #fff;
+    line-height: 15px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    background: #a0a4bc;
+}
+#filterpro img {
+    cursor: pointer;
+    margin: 2px
+}
+
+#filterpro img.selected {
+    border: 2px solid;
+    margin: 0;
+}
+#column-left + #column-right + #content .product-grid > div.loadmask {
+    width: 100%;
+}
+
+#filterpro input {
+    margin: 11px 5px 0px 0px;
+}
+#filterpro table{
+     margin-bottom: 5px;
+}

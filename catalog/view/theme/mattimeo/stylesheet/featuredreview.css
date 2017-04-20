@@ -1,0 +1,66 @@
+.prod_review_box  .image{ float:left;}
+.prod_review_box .center_desc3{text-align:left; }
+.prod_review_box .center_desc3 .center_desc3_right{ margin-right:240px; position:relative;}
+.prod_review_box .featured_review{
+	position:absolute;
+	top:20px;
+	right:20px; 
+    width:180px; 
+	padding:20px;
+	background-color:rgba(0,0,0,0.03);
+}
+
+.prod_review_box .authorreview { 
+background: url("../image/user_review.png") 0% 0% no-repeat transparent;
+border-bottom: 1px solid rgba(0,0,0,0.1);
+font-weight:bold;
+margin-bottom: 20px;
+min-height: 24px;
+padding-left: 30px;
+text-align: left;
+}
+.prod_review_box  .textreview { 
+background: url("../image/quote.png") no-repeat transparent;
+font-style: italic;
+padding-left: 30px;
+text-align:left;
+}
+.prod_review_box  .textreview a{ text-decoration:none;}
+
+.prod_review_box .verticaltab .owl-theme  .owl-controls .owl-buttons{
+	position:absolute;
+	top:-36px;
+	right:0;
+	width:64px;}
+.prod_review_box .verticaltab .owl-theme .owl-controls .owl-buttons div.owl-prev,
+.prod_review_box .verticaltab .owl-theme:hover .owl-controls .owl-buttons div.owl-prev{ left:0px;} 
+.prod_review_box .verticaltab .owl-theme .owl-controls .owl-buttons div.owl-next,
+.prod_review_box .verticaltab .owl-theme:hover .owl-controls .owl-buttons div.owl-next{right:0;} 
+
+.prod_review_box .verticaltab .owl-theme .owl-controls .owl-buttons div,
+.prod_review_box .verticaltab .owl-theme:hover .owl-controls.clickable .owl-buttons div{
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+	-moz-opacity: 1;
+    -khtml-opacity: 1; }
+.verticaltab .featured_review .owl-item{
+	background-color:transparent;
+	-webkit-box-shadow:none;
+	 -moz-box-shadow:none);
+    box-shadow:none;
+}
+
+#column-left .prod_review_box .image,
+#column-rigth .prod_review_box .image{ float:none; margin-bottom:10px; margin-right:0;}
+#column-left .prod_review_box .center_desc3 .center_desc3_right,
+#column-right .prod_review_box .center_desc3 .center_desc3_right{ margin-right:0;text-align:center; }
+#column-left .prod_review_box .featured_review,
+#column-right .prod_review_box .featured_review{
+	position: relative;
+	top:auto;
+	left:0;
+	width:160px;}
+#column-left .prod_review_box .description,
+#column-right .prod_review_box .description{ display:none;}	
+#column-left .prod_review_box .block2,
+#column-right .prod_review_box .block2{     padding: 10px 0px;}

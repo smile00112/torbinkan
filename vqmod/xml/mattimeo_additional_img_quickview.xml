@@ -1,0 +1,186 @@
+<modification>
+	<id>Mattimeo Additional images and quickview</id>
+	<version>1.6.x</version>
+	<vqmver>2.4.1</vqmver>
+	<author>Mattimeo</author>
+	<file path="catalog/controller/product/" name="category.php,manufacturer.php,search.php,special.php">
+		<operation>
+			<search position="before"><![CDATA[
+			if ($result['image']) {
+			]]></search>
+			
+			<add><![CDATA[
+			$results_img = $this->model_catalog_product->getProductImages($result['product_id']);
+                $dop_img = array();
+                foreach ($results_img as $result_img) {
+                if ($result_img['image']) {
+                $image_dop = $this->model_tool_image->resize($result_img['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+                } else {
+                $image_dop = false;
+                }
+                 $dop_img[] = $image_dop;
+                }
+			
+			]]></add>
+		</operation>
+				<operation>
+			<search position="before"><![CDATA[
+			'product_id'  => $result['product_id'],
+			]]></search>
+			
+			<add><![CDATA[
+			'dop_img' => $dop_img,
+			
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/category.php">	
+	<operation error="log">
+		<search position="before"><![CDATA[					
+		'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
+		]]></search>
+		<add><![CDATA[
+		'quickview'        => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
+		]]></add>
+	</operation>
+</file>
+<file name="catalog/controller/product/manufacturer.php">	
+	<operation error="log">
+		<search position="before"><![CDATA[					
+		'href'        => $this->url->link('product/product', '&manufacturer_id=' . $result['manufacturer_id'] . '&product_id=' . $result['product_id'] . $url)
+		]]></search>
+		<add><![CDATA[
+		'quickview'        => $this->url->link('product/quickview', '&manufacturer_id=' . $result['manufacturer_id'] . '&product_id=' . $result['product_id'] . $url),
+		]]></add>
+	</operation>
+</file>
+<file  path="catalog/controller/product/" name="search.php,special.php">	
+	<operation error="log">
+		<search position="before"><![CDATA[					
+		'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+		]]></search>
+		<add><![CDATA[
+		'quickview'        => $this->url->link('product/quickview', 'product_id=' . $result['product_id'] . $url),
+		]]></add>
+	</operation>
+</file>
+<file name="catalog/controller/module/featured.php">
+		<operation>
+			<search position="before"><![CDATA[
+			if ($product_info) {
+			]]></search>
+			
+			<add><![CDATA[
+			$results_img = $this->model_catalog_product->getProductImages($product_info['product_id']);
+                $dop_img = array();
+                foreach ($results_img as $result_img) {
+                if ($result_img['image']) {
+                $image_dop = $this->model_tool_image->resize($result_img['image'], $setting['image_width'], $setting['image_height']);
+                } else {
+                $image_dop = false;
+                }
+                 $dop_img[] = $image_dop;
+                }
+			
+			]]></add>
+		</operation>
+				<operation>
+			<search position="before"><![CDATA[
+			'product_id' => $product_info['product_id'],
+			]]></search>
+			
+			<add><![CDATA[
+			'dop_img' => $dop_img,
+			'quickview'        => $this->url->link('product/quickview', 'product_id=' . $product_info['product_id']),
+			
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/module/" name="bestseller.php,latest.php,special.php">
+		<operation>
+			<search position="before"><![CDATA[
+			if ($result['image']) {
+			]]></search>
+			
+			<add><![CDATA[
+			$results_img = $this->model_catalog_product->getProductImages($result['product_id']);
+                $dop_img = array();
+                foreach ($results_img as $result_img) {
+                if ($result_img['image']) {
+                $image_dop = $this->model_tool_image->resize($result_img['image'], $setting['image_width'], $setting['image_height']);
+                } else {
+                $image_dop = false;
+                }
+                 $dop_img[] = $image_dop;
+                }
+			
+			]]></add>
+		</operation>
+				<operation>
+			<search position="before"><![CDATA[
+			'product_id' => $result['product_id'],
+			]]></search>
+			
+			<add><![CDATA[
+			'dop_img' => $dop_img,
+			'quickview'        => $this->url->link('product/quickview', 'product_id=' . $result['product_id']),
+			
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="after"><![CDATA[$this->language->load('product/product');
+			]]></search>
+			
+			<add><![CDATA[
+
+            $this->document->addScript('catalog/view/theme/' . $this->config->get('config_template') . '/js/product/jquery.elevateZoom-2.5.5.js');
+            $this->document->addScript('catalog/view/theme/' . $this->config->get('config_template') . '/js/product/jquery.magnific-popup.min.js');
+            $this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/magnific-popup.css');
+			
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			$this->data['images'] = array();
+			]]></search>
+			
+			<add><![CDATA[
+			if ($product_info['image']) {
+                $this->data['smallimg'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
+            } else {
+                $this->data['smallimg'] = '';
+            }
+			
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))
+			]]></search>
+			
+			<add><![CDATA[
+			'thumb1' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')),
+			
+			]]></add>
+		</operation>
+		 <operation info="after">
+                        <search position="after"><![CDATA[
+                        $this->load->model('tool/image');
+                        ]]>
+						</search>
+						
+                        <add><![CDATA[
+                        $manufacturer_image = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
+          
+						 if($manufacturer_image){
+							$this->data['manufacturers_img'] = $this->model_tool_image->resize($manufacturer_image['image'], 80, 80);
+						 }else{
+							$this->data['manufacturers_img'] = false;
+						 }
+                        ]]>
+						</add>
+                </operation>
+	</file>
+</modification>

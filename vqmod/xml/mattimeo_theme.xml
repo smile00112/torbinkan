@@ -1,0 +1,69 @@
+<modification>
+	<id>Mattimeo OpenCart Theme</id>
+	<version>1.6.x</version>
+	<vqmver>2.4.1</vqmver>
+	<author>Mattimeo</author>
+	<file name="catalog/controller/common/footer.php">
+		<operation>
+			<search position="before"><![CDATA[
+			$this->render();
+			]]></search>
+			
+			<add><![CDATA[
+
+			$this->children[] = 'module/mattimeotheme';
+			
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/module/" name="bestseller.php,featured.php,latest.php,special.php">
+		<operation>
+			<search position="before"><![CDATA[
+			$this->render();
+			]]></search>
+			
+			<add><![CDATA[
+        	$this->data['position'] = $setting['position'];
+			
+			]]></add>
+		</operation>
+</file>
+<file name="catalog/controller/common/home.php">
+		<operation>
+			<search position="after"><![CDATA[
+			'common/content_top',
+			]]></search>
+			
+			<add><![CDATA[
+            'common/topcontent',
+			
+			]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/module/slideshow.tpl">
+		<operation>
+			<search position="after"><![CDATA[
+			 <td class="left"><select name="slideshow_module[<?php echo $module_row; ?>][position]">
+			]]></search>
+			
+			<add><![CDATA[
+             <?php if ($module['position'] == 'topcontent') { ?>
+         <option value="topcontent" selected="selected">Full width</option>
+         <?php } else { ?>
+         <option value="topcontent">Full width</option>
+         <?php } ?>
+			
+			]]></add>
+		</operation>
+				<operation>
+			<search position="after"><![CDATA[
+			 html += '    <td class="left"><select name="slideshow_module[' + module_row + '][position]">';
+			]]></search>
+			
+			<add><![CDATA[
+            html += '      <option value="topcontent">Full width</option>';
+			
+			]]></add>
+		</operation>
+	</file>
+</modification>

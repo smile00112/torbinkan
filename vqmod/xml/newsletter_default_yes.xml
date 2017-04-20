@@ -1,0 +1,102 @@
+<modification>
+  <id>Newsletter Default Yes</id>
+  <version>1.0.2</version>
+  <vqmver>2.1.6</vqmver>
+  <author>Rofus</author>
+  
+
+<!-- This is specific for anyone using Sellegance theme -->  
+  <file name="catalog/view/theme/sellegance/template/account/register.tpl" error="skip">
+    <operation>
+      <search position="replace">
+        <![CDATA[
+        <label class="radio inline"><input type="radio" name="newsletter" value="1" /><?php echo $text_yes; ?></label>
+        ]]>
+      </search>
+      <add>
+        <![CDATA[
+        <label class="radio inline"><input type="radio" name="newsletter" value="1" checked="checked" /><?php echo $text_yes; ?></label>
+        ]]>
+      </add>
+    </operation>
+    <operation>
+      <search position="replace">
+        <![CDATA[
+        <label class="radio inline"><input type="radio" name="newsletter" value="0" checked="checked" /><?php echo $text_no; ?></label>
+        ]]>
+      </search>
+      <add>
+        <![CDATA[
+        <label class="radio inline"><input type="radio" name="newsletter" value="0" /><?php echo $text_no; ?></label>
+        ]]>
+      </add>
+    </operation>
+  </file>
+  
+  <file name="catalog/view/theme/sellegance/template/checkout/register.tpl" error="skip">
+    <operation>
+      <search position="replace">
+        <![CDATA[
+        <input type="checkbox" name="newsletter" value="1" id="newsletter" class="checkbox inline" />
+        ]]>
+      </search>
+      <add>
+        <![CDATA[
+        <input type="checkbox" name="newsletter" value="1" id="newsletter" class="checkbox inline" checked="checked" />
+        ]]>
+      </add>
+    </operation>
+  </file>  
+  
+<!-- End of Sellegance section -->
+  
+  
+
+<!-- Default 1.5.3.1 theme -->
+  <file name="catalog/view/theme/default/template/account/register.tpl">
+    <operation>
+      <search position="replace">
+        <![CDATA[
+        <input type="radio" name="newsletter" value="1" />
+        ]]>
+      </search>
+      <add>
+        <![CDATA[
+        <input type="radio" name="newsletter" value="1" checked="checked" />
+        ]]>
+      </add>
+    </operation>
+    <operation>
+      <search position="replace">
+        <![CDATA[
+        <input type="radio" name="newsletter" value="0" checked="checked" />
+        ]]>
+      </search>
+      <add>
+        <![CDATA[
+        <input type="radio" name="newsletter" value="0" />
+        ]]>
+      </add>
+    </operation>
+  </file>
+  
+  <file name="catalog/view/theme/default/template/checkout/register.tpl">
+    <operation>
+      <search position="replace">
+        <![CDATA[
+        <input type="checkbox" name="newsletter" value="1" id="newsletter" />
+        ]]>
+      </search>
+      <add>
+        <![CDATA[
+        <input type="checkbox" name="newsletter" value="1" id="newsletter" checked="checked" />
+        ]]>
+      </add>
+    </operation>
+  </file> 
+<!-- End of Default 1.5.3.1 theme -->
+
+
+
+</modification>
+

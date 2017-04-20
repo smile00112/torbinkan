@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Wholesale Price List Pro</id>
+	<version>1.1</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Opencart.my</author>
+	<file name="system/startup.php">
+		<operation> <!-- load MPDF library -->
+			<search position="before"><![CDATA[?>]]></search>
+			<add><![CDATA[if(file_exists(DIR_SYSTEM . 'library/MPDF56/mpdf.php')) {
+					require_once(DIR_SYSTEM . 'library/MPDF56/mpdf.php');
+					require_once(DIR_SYSTEM . 'library/myoc/barcode.php');
+				}]]></add>
+		</operation>
+	</file>
+	<file name="system/engine/action.php">
+		<operation> <!-- reroute product/pricelist to more original myoc/pricelist -->
+			<search position="after"><![CDATA[function __construct(]]></search>
+			<add><![CDATA[$route = ($route == 'product/pricelist') ? 'myoc/pricelist' : $route;]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/common/" name="column_left.php,column_right.php,content_bottom.php,content_top.php">
+		<operation> <!-- add layout override for pricelist -->
+			<search position="before"><![CDATA[== 'product/product']]></search>
+			<add><![CDATA[if ($route == 'product/pricelist' && isset($this->request->get['pricelist_id'])) {
+					$myocwpl_data = $this->config->get('myocwpl_data');
+					if($myocwpl_data) {
+						foreach ($myocwpl_data as $pricelist) {
+							if($pricelist['pricelist_id'] == $this->request->get['pricelist_id']) {
+								$layout_id = $pricelist['pricelist_layout'][$this->config->get('config_store_id')];
+								break;
+							}
+						}
+					}
+				}]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/common/seo_url.php">
+		<operation> <!-- decode pricelist SEO Keyword -->
+			<search position="after"><![CDATA[= $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword =]]></search>
+			<add><![CDATA[if (!$query->num_rows) {
+					$myocwpl_data = $this->config->get('myocwpl_data');
+					if($myocwpl_data)
+					{
+						foreach ($myocwpl_data as $wpl) {
+							if($wpl['keyword'] == $part)
+							{
+								$query->row['query'] = '';
+								$this->request->get['pricelist_id'] = $wpl['pricelist_id'];
+								$this->request->get['route'] = 'product/pricelist';
+								$query->num_rows = 1;
+								break;
+							}
+						}
+					}
+				}]]></add>
+		</operation>
+		<operation> <!-- convert pricelist link to SEO Keyword -->
+			<search position="before"><![CDATA[} elseif ($key == 'path') {]]></search>
+			<add><![CDATA[} elseif ($data['route'] == 'product/pricelist' && $key == 'pricelist_id') {
+					$myocwpl_data = $this->config->get('myocwpl_data');
+					if($myocwpl_data)
+					{
+						foreach ($myocwpl_data as $wpl) {
+							if($wpl['pricelist_id'] == (int)$value && !empty($wpl['keyword']))
+							{
+								$url .= '/' . $wpl['keyword'];
+								break;
+							}
+						}
+					}
+					unset($data[$key]);]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/cart.php">
+		<operation error="skip"> <!-- for OpenCart v1.5.1.3 and older -->
+			<search position="before"><![CDATA[function update(]]></search>
+			<add><![CDATA[public function add() {
+					return $this->update();
+				}]]></add>
+		</operation>
+	</file>
+</modification>

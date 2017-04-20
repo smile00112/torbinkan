@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+  <id>Вложение в письмо о заказе</id>
+  <version>1.0.0</version>
+  <vqmver>2.0.0</vqmver>
+  <author>ashap08@ya.ru</author>
+  <file name="catalog/model/checkout/order.php">
+    <operation>
+      <search position="replace">
+        <![CDATA[ public function confirm($order_id, $order_status_id, $comment = '', $notify = false) { ]]>
+      </search>
+      <add>
+      <![CDATA[ public function confirm($order_id, $order_status_id, $comment = '', $notify = false, $attachment = '') { ]]>
+      </add>
+    </operation>
+    <operation>
+      <search position="before" index="1">
+        <![CDATA[ $mail->send(); ]]>
+      </search>
+      <add>
+      <![CDATA[ if ($attachment){
+      $mail->addAttachment($attachment);
+         } ]]>
+      </add>
+    </operation>
+  </file>
+ </modification>

@@ -1,0 +1,108 @@
+<modification>
+	<id><![CDATA[Option Filter]]></id>
+	<version><![CDATA[1.0.2]]></version>
+	<vqmver><![CDATA[2.x]]></vqmver>
+	<author><![CDATA[BTech Unit]]></author>
+        <file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="before" index="1,2"><![CDATA[if (isset($this->request->get['filter'])) {]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                             if (isset($this->request->get['option_filter'])) {
+                $url .= '&option_filter=' . $this->request->get['option_filter'];
+            }
+                           // Option FIlter
+]]></add>
+		</operation>
+ 
+ <operation>
+			<search position="replace" index="2"><![CDATA['href'      => $this->url->link('product/category', 'path=' . $path),]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                            'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'].( (isset($this->request->get['option_filter']) ? '&option_filter=' . $this->request->get['option_filter'] : ''))),
+                           // Option FIlter
+]]></add>
+		</operation>
+                
+	</file>
+       
+       <file name="catalog/controller/product/category.php">
+		<operation>
+			<search position="before" index="2,4"><![CDATA[if (isset($this->request->get['sort'])) {]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                             if (isset($this->request->get['option_filter'])) {
+                $url .= '&option_filter=' . $this->request->get['option_filter'];
+                $option_filter = $this->request->get['option_filter'];
+            } else {
+                $option_filter = '';
+            }
+                           // Option FIlter
+]]></add>
+		</operation>
+                <operation>
+			<search position="after"><![CDATA[ 'filter_category_id' => $category_id,]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                             'option_filter' => $option_filter,
+                           // Option FIlter
+]]></add>
+		</operation>
+                  <operation>
+			<search position="before" index="5"><![CDATA[if (isset($this->request->get['limit'])) {]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                             if (isset($this->request->get['option_filter'])) {
+                $url .= '&option_filter=' . $this->request->get['option_filter'];
+            }
+                           // Option FIlter
+]]></add>
+		</operation>
+                 <operation>
+			<search position="before" index="5,6,7"><![CDATA[if (isset($this->request->get['sort'])) {]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                             if (isset($this->request->get['option_filter'])) {
+                $url .= '&option_filter=' . $this->request->get['option_filter'];
+            }
+                           // Option FIlter
+]]></add>
+		</operation>    
+	</file>
+        
+        <file name="catalog/model/catalog/product.php">
+		<operation>
+			<search position="before" index="1,2"><![CDATA[		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= '" . $this->NOW . "' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                            if (!empty($data['option_filter'])) {
+            $sql .= " LEFT JOIN " . DB_PREFIX . "product_option_value povv ON (povv.product_id = p.product_id) "; 
+            $sql .= " LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (povv.option_value_id = ovd.option_value_id) ";
+        }
+                           // Option FIlter
+]]></add>
+		</operation>
+                <operation>
+			<search position="after" index="1,2"><![CDATA[		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= '" . $this->NOW . "' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+]]></search>
+			<add><![CDATA[
+                            // Option FIlter
+                             if (!empty($data['option_filter'])) {
+                $implode = array();
+
+                $filters = explode(',', $data['option_filter']);
+
+                foreach ($filters as $filter_id) {
+                    $implode[] = (int) $filter_id;
+                }
+
+                $sql .= " AND ovd.option_value_id IN (" . implode(',', $implode) . ") and povv.quantity<>0 ";
+               
+            }
+                           // Option FIlter
+]]></add>
+		</operation>
+ 
+	</file>
+</modification>

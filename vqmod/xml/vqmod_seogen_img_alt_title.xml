@@ -1,0 +1,36 @@
+<modification>
+	<id>SEOGEN product image alt/title</id>
+	<version>1.5.x</version>
+	<author>ruslan.shv@gmail.com</author>
+	<file name="catalog/controller/product/category.php">
+		<operation>
+			<search position="before"><![CDATA[$this->data['products'][] = array(]]></search>
+			<add><![CDATA[				$tags = array(
+									'[product_name]' => $result['name'],
+									'[product_description]' => strip_tags($result['description']),
+									'[model_name]' => $result['model'],
+									'[manufacturer_name]' => $result['manufacturer'],
+									'[category_name]' => $category_info['name'],
+									'[sku]' => $result['sku'],
+									'[price]' => $price,
+							);
+
+							$seogen = $this->config->get('seogen');
+							$img_title = trim(strtr($seogen['products_img_title_template'], $tags));
+							$img_alt = trim(strtr($seogen['products_img_alt_template'], $tags));
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA['name'        => $result['name'],]]></search>
+			<add><![CDATA[					'img_title'   => $img_title,
+								'img_alt'     => $img_alt,]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/product/category.tpl">
+		<operation>
+			<search position="replace"><![CDATA[title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>"]]></search>
+			<add><![CDATA[title="<?php echo $product['img_title']; ?>" alt="<?php echo $product['img_alt']; ?>"]]></add>
+		</operation>
+	</file>
+</modification>

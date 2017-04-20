@@ -1,0 +1,54 @@
+<modification>
+        <id>Articles in admin header</id>
+        <version>1.5.5.1</version>
+        <vqmver>2.2.3</vqmver>
+        <author>waha050@gmail.com</author>
+        <file name="admin/view/template/common/header.tpl">
+                <operation>
+                        <search position="before"><![CDATA[
+                        <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
+                        ]]></search>
+                        <add><![CDATA[
+                        <li><a href="<?php echo $articles; ?>"><?php echo $text_articles; ?></a></li>
+                        ]]></add>
+                </operation>
+        </file>
+        <file name="admin/controller/common/header.php">
+                <operation>
+                        <search position="before"><![CDATA[
+                        this->data['text_information'] = $this->language->get('text_information');
+                        ]]></search>
+                        <add><![CDATA[
+                        $this->data['text_articles'] = $this->language->get('text_articles');
+                        ]]></add>
+                </operation>
+                <operation>
+                        <search position="after"><![CDATA[
+                        $this->data['information'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'], 'SSL');
+                        ]]></search>
+                        <add><![CDATA[
+                        $this->data['articles'] = $this->url->link('module/articles/listing', 'token=' . $this->session->data['token'], 'SSL');
+                        ]]></add>
+                </operation>
+        </file>
+        <file name="admin/language/russian/common/header.php">
+                <operation>
+                        <search position="after"><![CDATA[
+                        = 'Статьи';
+                        ]]></search>
+                        <add><![CDATA[
+						$_['text_articles'] = 'Обзоры и советы';
+                        ]]></add>
+                </operation>
+        </file>
+        <file name="admin/language/english/common/header.php">
+                <operation>
+                        <search position="after"><![CDATA[
+                        = 'Information';
+                        ]]></search>
+                        <add><![CDATA[
+						$_['text_articles'] = 'Articles';
+                        ]]></add>
+                </operation>
+        </file>
+</modification>

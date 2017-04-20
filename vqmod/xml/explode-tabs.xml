@@ -1,0 +1,74 @@
+<modification>
+	<id><![CDATA[@tik Explode tabs]]></id>
+	<version><![CDATA[1.2.1]]></version>
+	<vqmver><![CDATA[2.1.7]]></vqmver>
+	<author><![CDATA[OC2PS]]></author>
+	<file name="catalog/view/theme/default/template/common/header.tpl">
+		<operation>
+			<search position="after" error="skip"><![CDATA[<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/stylesheet.css" />]]></search>
+			<add><![CDATA[<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/explode-tabs.css" />]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/default/template/product/product.tpl">
+		<operation>
+			<search position="replace" error="skip"><![CDATA[<a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $text_write; ?></a>]]></search>
+			<add><![CDATA[<?php $j = $url = "http" . ((!empty($_SERVER['HTTPS'])) ? "s" : "") . "://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>
+<a href = "<?php echo $url,'#tab-review' ; ?>"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href = "<?php echo $url,'#tab-review' ; ?>"><?php echo $text_write; ?></a>]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="10" error="skip"><![CDATA[<div id="tabs" class="htabs"><a href="#tab-description"><?php echo $tab_description; ?></a>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="before" error="skip"><![CDATA[<div id="tab-attribute" class="tab-content">]]></search>
+			<add><![CDATA[<div class="exploded-tab"><a name="tab-attribute"><?php echo $tab_attribute; ?></a></div>]]></add>
+		</operation>
+		<operation>
+			<search position="before" offset="1" error="skip"><![CDATA[<div id="tab-review" class="tab-content">]]></search>
+			<add><![CDATA[<?php if ($products) { ?>
+<!--<div class="exploded-tab"><a name="tab-related"><?php echo $tab_related; ?> (<?php echo count($products); ?>)</a></div>-->
+  <div id="tab-related" class="tab-content">
+    <div class="box-product">
+      <?php foreach ($products as $product) { ?>
+      <div>
+<table width="100%" border="0"><tr><td width="100">
+        <?php if ($product['thumb']) { ?>
+        <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+        <?php } ?>
+</td><td>
+        <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+</td><td>
+        <?php if ($product['price']) { ?>
+        <div class="price">
+          <?php if (!$product['special']) { ?>
+          <?php echo $product['price']; ?>
+          <?php } else { ?>
+          <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+          <?php } ?>
+        </div>
+        <?php } ?>
+</td><td>
+        <?php if ($product['rating']) { ?>
+        <div class="rating"><img src="catalog/view/theme/default/image/stars-<?php echo round($product['rating']); ?>.png" title="<?php echo round($product['rating'],1); ?>" alt="<?php echo round($product['rating']); ?>" /></div>
+        <?php } ?>
+</td><td>
+        <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></td></tr></table></div>
+      <?php } ?>
+    </div>
+  </div>
+  <?php } ?>]]></add>
+		</operation>
+		<operation>
+			<search position="before" error="skip"><![CDATA[<div id="tab-review" class="tab-content">]]></search>
+			<add><![CDATA[<div class="exploded-tab"><a name="tab-review"><?php echo $tab_review; ?></a></div>]]></add>
+		</operation>
+		<operation>
+			<search position="before" offset="1" index="2" error="skip"><![CDATA[<div id="tab-related" class="tab-content">]]></search>
+			<add><![CDATA[TheMarkerForRemovingSecondRelatedProducts]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="26" error="skip"><![CDATA[TheMarkerForRemovingSecondRelatedProducts]]></search>
+			<add><![CDATA[]]></add>
+		</operation>		
+	</file>
+</modification>

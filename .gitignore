@@ -1,0 +1,9 @@
+#NOOOOOOOOOOOOOOO
+image/
+cgi-bin/
+priceworker/
+system/logs/
+system/logs/my_mego_log.log
+u7619407_ver (3).sql
+#По расширению
+#no/*.txt

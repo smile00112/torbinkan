@@ -1,0 +1,27 @@
+<modification>
+	<id>META-seo-gen - for OcStore</id>
+	<version>1.5.5.x</version>
+	<vqmver>1.1.0</vqmver>
+	<author>Baco</author>
+	<file name="admin/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['text_zone'] = $this->language->get('text_zone');]]></search>
+			<add><![CDATA[		$this->data['text_seo'] = $this->language->get('text_seo');]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$this->data['geo_zone'] = $this->url->link('localisation/geo_zone', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+			<add><![CDATA[			$this->data['seo'] = $this->url->link('common/seogen', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/*/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[// Text]]></search>
+			<add><![CDATA[$_['text_seo']				= 'SEO генератор';]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$this->data['backup'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+			<add><![CDATA[			$this->data['export'] = $this->url->link('tool/export', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+	</file>
+
+</modification>

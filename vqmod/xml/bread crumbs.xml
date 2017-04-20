@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Bread crumbs</id>
+	<version>1.0</version>
+	<vqmver>2.4.1</vqmver>
+	<author>AnOcToJI</author>
+	<file name="catalog/view/theme/*/template/account/account.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>	
+	<file name="catalog/view/theme/*/template/account/address_form.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/account/address_list.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/customer_support.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/download.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/edit.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/forgotten.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/login.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/newsletter.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/order_info.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/order_list.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/password.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/register.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/return_form.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/return_info.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/return_list.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/reward.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/transaction.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/voucher.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/account/wishlist.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/account.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/edit.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/forgotten.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/login.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/password.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/payment.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/register.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/tracking.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/affiliate/transaction.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/checkout/cart.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/checkout/checkout.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/common/simple_header.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/common/success.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/error/not_found.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/information/contact.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/information/information.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/information/poll.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/*/template/information/sitemap.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/information/news.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+
+	<file name="catalog/view/theme/*/template/product/category.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/product/compare.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/product/manufacturer_info.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/product/manufacturer_list.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/*/template/product/search.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+			</file>
+			
+	<file name="catalog/view/theme/*/template/product/special.tpl">
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+			]]></search>
+			<add><![CDATA[<?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
+		<?php echo $breadcrumb['separator']; ?><?php if($i+1<count($breadcrumbs)) { ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a> <?php } else { ?><?php echo $breadcrumb['text']; ?><?php } ?>]]></add>
+		</operation>
+	</file>
+</modification>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>SEO Keywords Generator v0.1.1 [by addist.ru]</name>
+    <code>seo_generator</code>
+    <version>0.1.1</version>
+    <author>Mumtoz Qodirov [addist.ru]</author>
+    <link>http://addist.ru/</link>
+    
+    <!-- auto seo-url -->
+    <file path="admin/model/catalog/category.php">
+        <operation error="skip">
+            <search regex="true"><![CDATA[#if +\((isset\()?\$data\['keyword'\](\))\)#]]></search>
+            <add position="before"><![CDATA[
+            $this->load->model('tool/seo_generator');
+            if ($this->config->get('seo_generator_status'))
+            {
+        		if (empty($data['keyword']))
+                {
+                    $data['keyword'] = $this->model_tool_seo_generator->setKeyword('category',$category_id,array(),$this->config->get('ocseo_plus_translit'));
+                }
+                if (!empty($data['keyword']))
+                {
+                    $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
+                }
+            }
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="admin/model/catalog/product.php">
+        <operation error="skip">
+            <search regex="true"><![CDATA[#if +\((isset\()?\$data\['keyword'\](\))?\)#]]></search>
+            <add position="before"><![CDATA[
+            $this->load->model('tool/seo_generator');
+            if ($this->config->get('seo_generator_status'))
+            {
+        		if (empty($data['keyword']))
+                {
+                    $data['keyword'] = $this->model_tool_seo_generator->setKeyword('product',$product_id,array('category','manufacturer'),$this->config->get('ocseo_plus_translit'));
+                }
+                if (!empty($data['keyword']))
+                {
+                    $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
+                }
+            }
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="admin/model/catalog/manufacturer.php">
+        <operation error="skip">
+            <search regex="true"><![CDATA[#if +\((isset\()?\$data\['keyword'\](\))?\)#]]></search>
+            <add position="before"><![CDATA[
+            $this->load->model('tool/seo_generator');
+            if ($this->config->get('seo_generator_status'))
+            {
+        		if (empty($data['keyword']))
+                {
+                    $data['keyword'] = $this->model_tool_seo_generator->setKeyword('manufacturer',$manufacturer_id,array(),$this->config->get('ocseo_plus_translit'));
+                }
+                if (!empty($data['keyword']))
+                {
+                    $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'manufacturer_id=" . (int)$manufacturer_id . "'");
+                }
+            }
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="admin/model/catalog/information.php">
+        <operation error="skip">
+            <search regex="true"><![CDATA[#if +\((isset\()?\$data\['keyword'\](\))?\)#]]></search>
+            <add position="before"><![CDATA[
+            $this->load->model('tool/seo_generator');
+            if ($this->config->get('seo_generator_status'))
+            {
+        		if (empty($data['keyword']))
+                {
+                    $data['keyword'] = $this->model_tool_seo_generator->setKeyword('information',$information_id,array(),$this->config->get('ocseo_plus_translit'));
+                }
+                if (!empty($data['keyword']))
+                {
+                    $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "'");
+                }
+            }
+            ]]></add>
+        </operation>
+    </file>
+    <!-- auto seo-url -->
+</modification>

@@ -1,0 +1,539 @@
+/*
+* Styles for Opencart Product Configurator
+* Copyright 2012, Y84.nl
+* www.y84.nl
+* Commercial Licence Distributed under GNU/GPL
+* http://www.opensource.org/licenses/mit-license.php
+*/
+
+/* #Tabs (activate in tabs.js)
+================================================== */
+ul.tabs {
+	display: block;
+	margin: 0 0 10px 0;
+	padding: 0;
+	border-bottom: solid 1px #ddd; }
+ul.tabs li {
+	display: block;
+	width: auto;
+	height: 30px;
+	padding: 0;
+	float: left;
+	margin-bottom: 0; }
+ul.tabs li a {
+	display: block;
+	text-decoration: none;
+	width: auto;
+	height: 29px;
+	padding: 0px 10px;
+	line-height: 30px;
+	border: solid 1px #ddd;
+	border-width: 1px 1px 0 0;
+	margin: 0;
+	background: #f5f5f5;
+	font-size: 13px; }
+ul.tabs li a.active {
+	background: #fff;
+	height: 30px;
+	position: relative;
+	top: -4px;
+	padding-top: 4px;
+	border-left-width: 1px;
+	margin: 0 0 0 -1px;
+	color: #000;
+	font-weight: bold;
+	-moz-border-radius-topleft: 2px;
+	-webkit-border-top-left-radius: 2px;
+	border-top-left-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-webkit-border-top-right-radius: 2px;
+	border-top-right-radius: 2px; }
+ul.tabs li:first-child a.active {
+	margin-left: 0; }
+ul.tabs li:first-child a {
+	border-width: 1px 1px 0 1px;
+	-moz-border-radius-topleft: 2px;
+	-webkit-border-top-left-radius: 2px;
+	border-top-left-radius: 2px; }
+ul.tabs li:last-child a {
+	-moz-border-radius-topright: 2px;
+	-webkit-border-top-right-radius: 2px;
+	border-top-right-radius: 2px; }
+
+ul.tabs-content { margin: 0; display: block; font-size: 11px; line-height: 15px; padding:0px; border: none; }
+ul.tabs-content p { margin: 0; padding-top: 3px; padding-bottom: 5px; line-height: 15px;}
+ul.tabs-content > li { display:none; }
+ul.tabs-content > li.active { display: block; }
+
+/* Clearfixing tabs for beautiful stacking */
+ul.tabs:before,
+ul.tabs:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+ul.tabs:after {
+  clear: both; }
+ul.tabs {
+  zoom: 1; 
+}
+
+
+/* #CUSTOM
+================================================== */
+
+.ui-widget { font-family: inherit; }
+
+.ui-widget-content {
+	border: none;
+	background: none;
+}
+
+.ui-widget-content a { text-decoration: none; }
+
+.ui-widget-header {
+	border: none;
+	background: none;
+ }
+
+
+
+/* Tab text color - default state */
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+	color: #ffffff;
+}
+
+/* Tab text color - when active */
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+	
+}
+
+/* Tab text color - when hovering */
+.ui-state-hover a, .ui-state-hover a:hover {
+	
+}	
+
+/* Tab design when in default state */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background: #162B3D;
+	border: 1px solid #333;
+}
+
+/* Tab design when in hover state */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+	background: #D31245;
+	border: 1px solid #333;
+}
+
+/* Tab design when in active state */
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background: #D31245;
+	border: 1px solid #9B0D2F;
+	text-shadow: 0px -1px 0px #000;
+}
+
+.ui-state-active:after {
+   content: "";
+   position: absolute;
+   top: 100%;
+   left: 30px;
+   border-top: 10px solid black;
+   border-top-color: #D31245; 
+   border-left: 10px solid transparent;
+   border-right: 10px solid transparent; 
+}
+
+.ui-tabs { 
+	position: relative; 
+	padding: .2em; 
+	zoom: 1; 
+	} /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+
+.ui-tabs .ui-tabs-nav { 
+	margin: 0; 
+	padding: 0; 
+}
+
+.ui-tabs .ui-tabs-nav li { 
+	list-style: none; 
+	float: left; 
+	position: relative; 
+	top: 1px; 
+	margin: 0 .2em 1px 0; 
+	border-bottom: 0 !important; 
+	padding: 5px; 
+	white-space: nowrap; 
+}
+
+.ui-tabs .ui-tabs-nav li a { 
+	float: left; 
+	padding: .5em 1em; 
+	text-decoration: none; 
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected { 
+	margin-bottom: 0; 
+	padding-bottom: 1px; 
+	padding: 5px;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { 
+	cursor: text; 
+}
+
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { 
+	cursor: pointer; 
+} /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+
+.ui-tabs .ui-tabs-panel { 
+	display: block; 
+	border-width: 0; 
+	padding: 1em 1.4em; 
+	background: none; 
+}
+
+.ui-tabs .ui-tabs-hide { 
+	display: none !important; 
+}
+
+/* Corner radius - override from default UX */
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { 
+-moz-border-radius-topleft: 0px; 
+-webkit-border-top-left-radius: 0px; 
+-khtml-border-top-left-radius: 0px; 
+border-top-left-radius: 0px; 
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { 
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px; 
+	-khtml-border-top-right-radius: 0px; 
+	border-top-right-radius: 0px; 
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { 
+	-moz-border-radius-bottomleft: 0px; 
+	-webkit-border-bottom-left-radius: 0px; 
+	-khtml-border-bottom-left-radius: 0px; 
+	border-bottom-left-radius: 0px; 
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { 
+	-moz-border-radius-bottomright: 0px; 
+	-webkit-border-bottom-right-radius: 0px;
+	 -khtml-border-bottom-right-radius: 0px; 
+	 border-bottom-right-radius: 0px; 
+}
+
+
+/* Step tabs */
+.pctabs {
+	background: none; 
+	border: 0px; 
+	color: #FFFFFF;
+}
+
+.pcoptioncolumn {
+	float: left;
+}
+
+.pcoptions {
+	padding-left: 15px; 
+	padding-right: 25px; 
+	padding-top: 10px;
+	padding: 0px 5px 10px 0px;
+	margin-bottom: 10px;
+	border: none;
+}
+
+/* Title left column */
+h3.pcoptiontitle {
+	font-weight: 400;
+	height: 20px;
+	margin-bottom: 0px; 
+	margin-top: 5px;
+	color: #162B3D;
+	text-shadow: 0 1px 1px white;
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0px 1px 0px #fff;
+}
+
+.leftcorrect:after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 40px;
+	border-top: 10px solid black;
+	border-top-color: #f4f4f4; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+}
+
+/* Single option in left column */
+.pcsingleoption {
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0px 1px 0px #fff;
+	margin: 5px 0px 0px 0px ;
+	padding-top: 10px;
+}
+
+.pcsingleoption:hover {
+	background-color: #f8f8f8;
+}
+
+.pcdescription {
+	margin: 0px;
+	width: auto;
+	padding: 5px;
+	border: none;
+	background: #EDEDED;
+}
+
+.leftcorrect {
+	margin-top: 2px;
+}
+
+/*-- Next, Previous and Startover buttons --*/
+.pcbuttons {
+	color: #000;
+	margin: 0px;
+	margin-bottom: 4px;
+	padding: 0px;
+	}
+
+.pcbuttons span a {
+ 	color:#f4f4f4;	
+	text-decoration: none;
+ }
+
+.pcprevious {
+	color:#f4f4f4;
+	cursor:pointer; 
+	font-size:14px; 
+	display: inline-block;
+	padding: 5px 12px 5px 23px; 
+	background-color: #162B3D;
+	background-image: url(../../image/ic_left_white.png);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+
+.pcnext {
+	color:#f4f4f4;
+	font-size:14px; 
+	padding: 5px 23px 5px 7px;
+	background-color: #162B3D;
+	cursor:pointer;
+	display: inline-block;
+	background-image: url(../../image/ic_right_white.png);
+	background-repeat: no-repeat;
+	background-position: 65px 5px;
+}
+
+.pcstartover {
+	color:#f4f4f4;
+	width:100px; 
+	display: inline-block;
+	cursor:pointer; 
+	font-size:14px; 
+	padding: 5px 0px 5px 10px;
+	background-color: #162B3D;
+	background-image: url(../../image/ic_refresh_white.png);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.pcprevious:hover {
+ 	background: #D31245;
+	background-image: url(../../image/ic_left_white.png);
+	background-repeat: no-repeat;
+	background-position: 2px 5px;
+}
+
+.pcnext:hover {
+ 	background: #D31245;
+	background-image: url(../../image/ic_right_white.png);
+	background-repeat: no-repeat;
+	background-position: 68px 5px;
+}
+
+.pcstartover:hover {
+ 	background: #D31245;
+	background-image: url(../../image/ic_refresh_white.png);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+
+/* Title */
+h1.pctitle {
+	color: #162B3D;
+	text-shadow: 0 1px 1px white;
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0px 1px 0px #fff;
+	margin: 0px;
+	padding: 0px;
+	font-weight: 400;
+}
+
+h2.pctitle {
+	color: #162B3D;
+	text-shadow: 0 1px 1px white;
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0px 1px 0px #fff;
+	margin: 0px;
+	padding: 0px 0px 0px 15px;
+	font-weight: 400;
+}
+
+.pcedited {
+	color: #162B3D;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	text-shadow: 0 1px 1px white;
+	margin: 0px;
+	font-weight: 400;
+	background-image: url(../../image/ic_attachment.png);
+	background-position: 0px 5px;
+	background-repeat: no-repeat;
+}
+
+span.pcvar {
+	color: #162B3D;
+	text-shadow: 0 1px 1px white;
+}
+
+
+/* Price */
+
+.product-info .pcprice {  
+	font-size: 16px; 
+	color: #162B3D;  
+	padding: 18px 25px 15px 25px;
+	text-shadow: 0 1px 1px white;  
+	}
+	
+.product-related .pcprice { 
+	background: none; 
+	color: #162B3D; 
+	font-size: 12px; 
+	padding: 0; 
+	margin-top: 3px; 
+	margin-bottom: 3px; 
+	text-shadow: 0 1px 1px white;
+}
+
+.product-info .pcprice-old {
+	color: #CCCCCC; 
+	text-decoration: line-through; 
+	text-shadow: 0 1px 1px white; 
+}
+
+.product-info .pcprice-tax { 
+	font-size: 11px; 
+	font-weight: normal; 
+	color: #CCCCCC; 
+	text-shadow: 0 1px 1px white; 
+}
+
+.product-info .pcprice .pcreward { 
+	font-size: 11px; 
+	font-weight: normal; 
+	color: #CCCCCC; 
+	text-shadow: 0 1px 1px white; 
+}
+
+.product-info .pcprice .discount { 
+	font-weight: normal; 
+	font-size: 11px; 
+}
+
+.customprice {
+	font-size: 16px; 
+	color: #D31245;  
+	padding: 0px;
+	margin: 0px;
+	background: none;
+	border: none;
+	text-shadow: 0 1px 1px white;
+}
+
+.review {
+	border: none;
+}
+
+/* Special Row */
+
+.special-row {
+	width: 100%;
+	display: block;
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0px 1px 0px #fff;
+	margin: 2px 0px 2px 0px;
+}
+
+table.pctable {
+	margin: 0px;
+	padding: 0px;
+	background: #fff;
+}
+
+tr.pctr {
+	margin: 1px;
+	padding: 1px;
+}
+
+td.pctd {
+	margin: 1px;
+	padding: 1px;
+}
+
+label.pclabel{
+	width: 300px;
+	display: block;
+	margin-right: 0px;
+	float: left;
+}
+
+span.pcpricespan {
+	display: block;
+	color: #162B3D;
+	text-shadow: 0 1px 1px white;
+	margin-right: 0px;
+}
+
+span.pcoptionnamespan {
+	display: block;
+	float: left;
+	color: #162B3D;
+	text-shadow: 0 1px 1px white;
+	margin: 0px 0px 0px 20px;
+}
+
+input[type='checkbox'] {
+	display: block;
+	margin: 0px 5px 0px 0px;
+	float: left;
+}
+
+
+/* Add to cart button */
+
+a.pcbutton {
+color: #f4f4f4;
+text-decoration: none;
+display: inline-block;
+padding: 10px 15px;
+	background: #162B3D;
+	}
+
+a.pcbutton:hover {
+color: #f4f4f4;
+text-decoration: none;
+display: inline-block;
+padding: 10px 15px;
+	background: #D31245;
+	}

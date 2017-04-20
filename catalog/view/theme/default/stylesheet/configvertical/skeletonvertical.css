@@ -1,0 +1,234 @@
+/*
+* Styles for Opencart Product Configurator
+* Copyright 2012, Y84.nl
+* www.y84.nl
+* Commercial Licence Distributed under GNU/GPL
+* http://www.opensource.org/licenses/mit-license.php
+*/
+
+/* Table of Contents
+==================================================
+    #Base 960 Grid
+    #Tablet (Portrait)
+    #Mobile (Portrait)
+    #Mobile (Landscape)
+    #Clearing */
+
+
+
+/* #Base 960 Grid
+================================================== */
+
+    .pccontainer                                  { position: relative; width: 980px; margin: 0 auto; }
+    .pccolumn, .pccolumns                           { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
+    .row                                        { margin-bottom: 10px; }
+
+    /* Nested pccolumn Classes */
+    .pccolumn.alpha, .pccolumns.alpha               { margin-left: 0; }
+    .pccolumn.omega, .pccolumns.omega               { margin-right: 0; }
+
+    /* Base Grid */
+    .pccontainer .one.pccolumn                      { width: 40px;  }
+    .pccontainer .two.pccolumns                     { width: 100px; }
+    .pccontainer .three.pccolumns                   { width: 160px; }
+    .pccontainer .four.pccolumns                    { width: 220px; }
+    .pccontainer .five.pccolumns                    { width: 280px; }
+    .pccontainer .six.pccolumns                     { width: 340px; }
+    .pccontainer .seven.pccolumns                   { width: 44%; }
+    .pccontainer .eight.pccolumns                   { width: 49%; }
+    .pccontainer .nine.pccolumns                    { width: 53%; }
+    .pccontainer .ten.pccolumns                     { width: 580px; }
+    .pccontainer .eleven.pccolumns                  { width: 640px; }
+    .pccontainer .twelve.pccolumns                  { width: 700px; }
+    .pccontainer .thirteen.pccolumns                { width: 930px; }
+    .pccontainer .fourteen.pccolumns                { width: 820px; }
+    .pccontainer .fifteen.pccolumns                 { width: 880px; }
+    .pccontainer .sixteen.pccolumns                 { width: 100%; }
+ 
+    .pccontainer .one-third.pccolumn                { width: 32%; display: block; /* box-shadow: 0px 1px 1px #fff; box-shadow: inset 0px 0px 7px  #333; -moz-box-shadow: inset 0px 0px 7px  #333; -webkit-box-shadow: inset 0px 0px 7px  #333; border-radius: 4px;*/ }
+    .pccontainer .two-thirds.pccolumn               { width: 63%; }
+
+    /* Offsets */
+    .pccontainer .offset-by-one                   { padding-left: 60px;  }
+    .pccontainer .offset-by-two                   { padding-left: 120px; }
+    .pccontainer .offset-by-three                 { padding-left: 180px; }
+    .pccontainer .offset-by-four                  { padding-left: 240px; }
+    .pccontainer .offset-by-five                  { padding-left: 300px; }
+    .pccontainer .offset-by-six                   { padding-left: 360px; }
+    .pccontainer .offset-by-seven                 { padding-left: 420px; }
+    .pccontainer .offset-by-eight                 { padding-left: 480px; }
+    .pccontainer .offset-by-nine                  { padding-left: 540px; }
+    .pccontainer .offset-by-ten                   { padding-left: 600px; }
+    .pccontainer .offset-by-eleven                { padding-left: 660px; }
+    .pccontainer .offset-by-twelve                { padding-left: 720px; }
+    .pccontainer .offset-by-thirteen              { padding-left: 780px; }
+    .pccontainer .offset-by-fourteen              { padding-left: 840px; }
+    .pccontainer .offset-by-fifteen               { padding-left: 900px; }
+
+
+
+/* #Tablet (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 768px */
+
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+        .pccontainer                                  { width: 768px; padding-left: 0; padding-right: 0; }
+        .pccontainer .pccolumn,
+        .pccontainer .pccolumns                         { margin-left: 10px; margin-right: 10px;  }
+        .pccolumn.alpha, .pccolumns.alpha               { margin-left: 0; margin-right: 10px; }
+        .pccolumn.omega, .pccolumns.omega               { margin-right: 0; margin-left: 10px; }
+
+        .pccontainer .one.pccolumn                      { width: 28px; }
+        .pccontainer .two.pccolumns                     { width: 76px; }
+        .pccontainer .three.pccolumns                   { width: 124px; }
+        .pccontainer .four.pccolumns                    { width: 172px; }
+        .pccontainer .five.pccolumns                    { width: 220px; }
+        .pccontainer .six.pccolumns                     { width: 268px; }
+        .pccontainer .seven.pccolumns                   { width: 316px; }
+        .pccontainer .eight.pccolumns                   { width: 364px; }
+        .pccontainer .nine.pccolumns                    { width: 412px; }
+        .pccontainer .ten.pccolumns                     { width: 460px; }
+        .pccontainer .eleven.pccolumns                  { width: 508px; }
+        .pccontainer .twelve.pccolumns                  { width: 556px; }
+        .pccontainer .thirteen.pccolumns                { width: 604px; }
+        .pccontainer .fourteen.pccolumns                { width: 652px; }
+        .pccontainer .fifteen.pccolumns                 { width: 700px; }
+        .pccontainer .sixteen.pccolumns                 { width: 748px; }
+
+        .pccontainer .one-third.pccolumn                { width: 236px; }
+        .pccontainer .two-thirds.pccolumn               { width: 492px; }
+
+        /* Offsets */
+        .pccontainer .offset-by-one                   { padding-left: 48px; }
+        .pccontainer .offset-by-two                   { padding-left: 96px; }
+        .pccontainer .offset-by-three                 { padding-left: 144px; }
+        .pccontainer .offset-by-four                  { padding-left: 192px; }
+        .pccontainer .offset-by-five                  { padding-left: 240px; }
+        .pccontainer .offset-by-six                   { padding-left: 288px; }
+        .pccontainer .offset-by-seven                 { padding-left: 336px; }
+        .pccontainer .offset-by-eight                 { padding-left: 348px; }
+        .pccontainer .offset-by-nine                  { padding-left: 432px; }
+        .pccontainer .offset-by-ten                   { padding-left: 480px; }
+        .pccontainer .offset-by-eleven                { padding-left: 528px; }
+        .pccontainer .offset-by-twelve                { padding-left: 576px; }
+        .pccontainer .offset-by-thirteen              { padding-left: 624px; }
+        .pccontainer .offset-by-fourteen              { padding-left: 672px; }
+        .pccontainer .offset-by-fifteen               { padding-left: 720px; }
+    }
+
+
+/*  #Mobile (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 320px */
+
+    @media only screen and (max-width: 767px) {
+        .pccontainer { width: 280px; padding-left: 10px; padding-right: 10px; }
+        .pccolumns, .pccolumn { margin: 0; }
+
+        .pccontainer .one.pccolumn,
+        .pccontainer .two.pccolumns,
+        .pccontainer .three.pccolumns,
+        .pccontainer .four.pccolumns,
+        .pccontainer .five.pccolumns,
+        .pccontainer .six.pccolumns,
+        .pccontainer .seven.pccolumns,
+        .pccontainer .eight.pccolumns,
+        .pccontainer .nine.pccolumns,
+        .pccontainer .ten.pccolumns,
+        .pccontainer .eleven.pccolumns,
+        .pccontainer .twelve.pccolumns,
+        .pccontainer .thirteen.pccolumns,
+        .pccontainer .fourteen.pccolumns,
+        .pccontainer .fifteen.pccolumns,
+        .pccontainer .sixteen.pccolumns,
+        .pccontainer .one-third.pccolumn,
+        .pccontainer .two-thirds.pccolumn  { width: 280px; }
+
+        /* Offsets */
+        .pccontainer .offset-by-one,
+        .pccontainer .offset-by-two,
+        .pccontainer .offset-by-three,
+        .pccontainer .offset-by-four,
+        .pccontainer .offset-by-five,
+        .pccontainer .offset-by-six,
+        .pccontainer .offset-by-seven,
+        .pccontainer .offset-by-eight,
+        .pccontainer .offset-by-nine,
+        .pccontainer .offset-by-ten,
+        .pccontainer .offset-by-eleven,
+        .pccontainer .offset-by-twelve,
+        .pccontainer .offset-by-thirteen,
+        .pccontainer .offset-by-fourteen,
+        .pccontainer .offset-by-fifteen { padding-left: 0; }
+
+    }
+
+
+/* #Mobile (Landscape)
+================================================== */
+
+    /* Note: Design for a width of 480px */
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        .pccontainer { width: 460px; padding-left: 10px; padding-right: 10px; }
+        .pccolumns, .pccolumn { margin: 0; padding: 0; }
+
+        .pccontainer .one.pccolumn,
+        .pccontainer .two.pccolumns,
+        .pccontainer .three.pccolumns,
+        .pccontainer .four.pccolumns,
+        .pccontainer .five.pccolumns,
+        .pccontainer .six.pccolumns,
+        .pccontainer .seven.pccolumns,
+        .pccontainer .eight.pccolumns,
+        .pccontainer .nine.pccolumns,
+        .pccontainer .ten.pccolumns,
+        .pccontainer .eleven.pccolumns,
+        .pccontainer .twelve.pccolumns,
+        .pccontainer .thirteen.pccolumns,
+        .pccontainer .fourteen.pccolumns,
+        .pccontainer .fifteen.pccolumns,
+        .pccontainer .sixteen.pccolumns,
+        .pccontainer .one-third.pccolumn,
+        .pccontainer .two-thirds.pccolumn { width: 460px; }
+    }
+
+
+/* #Clearing
+================================================== */
+
+    /* Self Clearing Goodness */
+    .pccontainer:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+
+    /* Use clearfix class on parent to clear nested pccolumns,
+    or wrap each row of pccolumns in a <div class="row"> */
+    .clearfix:before,
+    .clearfix:after,
+    .row:before,
+    .row:after {
+      content: '\0020';
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0; }
+    .row:after,
+    .clearfix:after {
+      clear: both; }
+    .row,
+    .clearfix {
+      zoom: 1; }
+
+    /* You can also use a <br class="clear" /> to clear pccolumns */
+    .clear {
+      clear: both;
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+
+

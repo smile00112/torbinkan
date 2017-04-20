@@ -1,0 +1,75 @@
+html {
+	overflow: -moz-scrollbars-vertical;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #ffffff;
+	color: #000000;
+	/* font-family: Arial, Helvetica, sans-serif; */
+	font-family: "Times New Roman", Times, serif;
+	margin: 0px;
+	padding: 0px;
+}
+body, td, th, a {
+	font-size: 12px;
+}
+.tleft {
+	text-align: left;
+}
+.tright {
+	text-align: right;
+}
+.tcenter {
+	text-align: center;
+}
+.tbl {
+	width: 100%;
+	border-collapse: collapse;
+}
+.tbl td {
+	font-size: 11px;
+}
+.pricelist {
+	overflow: auto;
+}
+.pricelist table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #333;
+	margin-bottom: 10px;
+}
+.pricelist table th, .pricelist table td {
+	border: 1px solid #333;
+	border-width: 1px;
+}
+.pricelist table th {
+	padding: 7px;
+	background-color: #ddd;
+	text-align: center;
+}
+.pricelist table td {
+	padding: 5px;
+}
+.pricelist table td.checkbox,
+.pricelist table td.image,
+.pricelist table td.action {
+	text-align: center;
+}
+.pricelist table td .price {
+	font-weight: bold;
+}
+.pricelist table td .price-old {
+	text-decoration: line-through;
+}
+.pricelist table td .price-new {
+	color: #f00;
+	font-weight: bold;
+}
+.pricelist table td .discount {
+	margin-top: 10px;
+	color: #666;
+}
+.pricelist table td .nostock {
+	color: #c00;
+}

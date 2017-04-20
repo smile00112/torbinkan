@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<products>
+	<product ref="4650ac62-468d-11de-8946-001a64c74f20">
+		<id>63030100000200010000</id>
+		<name>Кляймер 1 мм. (100 шт.)</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>1 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="79381eff-cf49-11e2-8915-001517e73829">
+		<id>63030100000200011000</id>
+		<name>Кляймер 1 мм. (100 шт.) бокс VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>0.160</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>1 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="a81283d5-c0ef-11df-95d9-001a64c74f20">
+		<id>63030100000400000100</id>
+		<name>Кляймер 1 мм./шт.</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>796</unit>
+		<unit_name>шт</unit_name>
+		<pcs>1</pcs>
+		<size>1 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">0.55</price1>
+	</product>
+	<product ref="4650ac64-468d-11de-8946-001a64c74f20">
+		<id>63030200000200010000</id>
+		<name>Кляймер 2 мм. (100 шт.)</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>2 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="f3cc8659-7f06-11e1-9b2b-001517e73829">
+		<id>63030200000200011000</id>
+		<name>Кляймер 2 мм. (100 шт.) бокс VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>0.160</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>2 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="a81283d8-c0ef-11df-95d9-001a64c74f20">
+		<id>63030200000400000100</id>
+		<name>Кляймер 2 мм./шт.</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>796</unit>
+		<unit_name>шт</unit_name>
+		<pcs>1</pcs>
+		<size>2 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">0.55</price1>
+	</product>
+	<product ref="d04e6362-7e17-11e1-9b2b-001517e73829">
+		<id>63030200000400001000</id>
+		<name>Кляймер 2 мм./тыс.шт.,VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>1.850</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>1000</pcs>
+		<size>2 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">250.11</price1>
+	</product>
+	<product ref="4650ac68-468d-11de-8946-001a64c74f20">
+		<id>63030300000200010000</id>
+		<name>Кляймер 3 мм. (100 шт.)</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>3 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="522ba7b1-bac0-11e1-9b2b-001517e73829">
+		<id>63030300000200011000</id>
+		<name>Кляймер 3 мм. (100 шт.) бокс VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>0.160</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>3 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="a81283db-c0ef-11df-95d9-001a64c74f20">
+		<id>63030300000400000100</id>
+		<name>Кляймер 3 мм./шт.</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>796</unit>
+		<unit_name>шт</unit_name>
+		<pcs>1</pcs>
+		<size>3 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">0.55</price1>
+	</product>
+	<product ref="522ba7ad-bac0-11e1-9b2b-001517e73829">
+		<id>63030300000400001000</id>
+		<name>Кляймер 3 мм./тыс.шт.,VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>1.930</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>1000</pcs>
+		<size>3 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">250.11</price1>
+	</product>
+	<product ref="4650ac66-468d-11de-8946-001a64c74f20">
+		<id>63030350000200010000</id>
+		<name>Кляймер 3,5 мм. (100 шт.) VF</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>0.160</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>3,5 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="e899dd81-58b6-11e3-891b-001517e73829">
+		<id>63030350000200011000</id>
+		<name>Кляймер 3,5 мм. (100 шт.) бокс VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>3,5 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="a81283de-c0ef-11df-95d9-001a64c74f20">
+		<id>63030350000400000100</id>
+		<name>Кляймер 3,5 мм./шт.</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>796</unit>
+		<unit_name>шт</unit_name>
+		<pcs>1</pcs>
+		<size>3,5 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">0.55</price1>
+	</product>
+	<product ref="4650ac6a-468d-11de-8946-001a64c74f20">
+		<id>63030400000200008000</id>
+		<name>Кляймер 4 мм. (80 шт.)</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>80</pcs>
+		<size>4 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="44d32697-a3d3-11e1-9b2b-001517e73829">
+		<id>63030400000200008100</id>
+		<name>Кляймер 4 мм. (80 шт.) бокс VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>0.170</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>80</pcs>
+		<size>4 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="a81283e1-c0ef-11df-95d9-001a64c74f20">
+		<id>63030400000400000100</id>
+		<name>Кляймер 4 мм./шт.</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>796</unit>
+		<unit_name>шт</unit_name>
+		<pcs>1</pcs>
+		<size>4 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">0.69</price1>
+	</product>
+	<product ref="44d3269a-a3d3-11e1-9b2b-001517e73829">
+		<id>63030400000400001000</id>
+		<name>Кляймер 4 мм./тыс. шт.VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>2.388</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>1000</pcs>
+		<size>4 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">313.11</price1>
+	</product>
+	<product ref="cd97e6d4-d09f-11e1-9b2b-001517e73829">
+		<id>63030500000200008030</id>
+		<name>Кляймер 5 мм. (80 шт.) бокс VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>0.170</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>80</pcs>
+		<size>5 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="4650ac6c-468d-11de-8946-001a64c74f20">
+		<id>63030500000200010000</id>
+		<name>Кляймер 5 мм. (80 шт.)</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>80</pcs>
+		<size>5 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="a81283e4-c0ef-11df-95d9-001a64c74f20">
+		<id>63030500000400000100</id>
+		<name>Кляймер 5 мм./шт.</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>796</unit>
+		<unit_name>шт</unit_name>
+		<pcs>1</pcs>
+		<size>5 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">0.69</price1>
+	</product>
+	<product ref="cd97e6cf-d09f-11e1-9b2b-001517e73829">
+		<id>63030500000400001000</id>
+		<name>Кляймер 5 мм./тыс. шт.VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>2.200</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>1000</pcs>
+		<size>5 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">313.11</price1>
+	</product>
+	<product ref="4650ac6e-468d-11de-8946-001a64c74f20">
+		<id>63030600000200008000</id>
+		<name>Кляймер 6 мм. (80 шт.) VF</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight>0.170</weight>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>80</pcs>
+		<size>6 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="e899dd84-58b6-11e3-891b-001517e73829">
+		<id>63030600000200008030</id>
+		<name>Кляймер 6 мм. (80 шт.) бокс VERFIT</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>778</unit>
+		<unit_name>упак</unit_name>
+		<pcs>100</pcs>
+		<size>6 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">25.20</price1>
+	</product>
+	<product ref="a81283e7-c0ef-11df-95d9-001a64c74f20">
+		<id>63030600000400000100</id>
+		<name>Кляймер 6 мм./шт.</name>
+		<id_folder>6-01</id_folder>
+		<folder>Кляймер VF</folder>
+		<id_folder_up>6</id_folder_up>
+		<folder_up>Кляймеры, Перфорация</folder_up>
+		<weight/>
+		<quantity>1</quantity>
+		<unit>796</unit>
+		<unit_name>шт</unit_name>
+		<pcs>1</pcs>
+		<size>6 мм</size>
+		<price1 ref="badb6edd-0fbb-11de-af2a-001a64c74f20" name="VF 4">0.69</price1>
+	</product>
+</products>

@@ -1,0 +1,123 @@
+
+.stati_left .h3,
+.stati_bottom .h3{
+	font-size:18px;
+	font-weight:600;
+	color:#575b71;
+}
+
+.stati_left ul.lsnn li,
+.stati_bottom ul.lsnn li{	
+	border-bottom:1px dotted #dee0ee;
+}
+
+.stati_left ul.lsnn li .image_cont .image,
+.stati_bottom ul.lsnn li .image_cont .image{	
+	border:1px solid #dee0ee;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+}
+
+.stati_left ul.lsnn li .image_cont .image a,
+.stati_bottom ul.lsnn li .image_cont .image a{
+	text-decoration:none;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-color:#575b71;
+}
+
+.stati_left ul.lsnn li a.title-link,
+.stati_bottom ul.lsnn li a.title-link{
+	color:#575b71;
+}
+
+.stati_left ul.lsnn li a.title-link:hover,
+.stati_bottom ul.lsnn li a.title-link:hover{
+	color:#cc9900;
+}
+
+.stati_left a.all,
+.stati_bottom a.all{
+	color:#a0a4bc;
+}
+/***LEFT_STATI***/
+/***BOTTOM_STATI***/
+.stati_left,
+.stati_bottom{
+	width:100%;
+	float:left;
+	margin:20px 0px 20px 0px;
+	padding:0px;
+}
+
+.stati_bottom{
+	display:none;
+	visibility:hidden;
+}
+
+.stati_left .h3,
+.stati_bottom .h3{
+	margin:0px;
+	padding:0px 0px 15px 0px;
+}
+
+.stati_left ul.lsnn,
+.stati_bottom ul.lsnn{
+	float:left;
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+
+.stati_left ul.lsnn li,
+.stati_bottom ul.lsnn li{
+	width:100%;
+	display:table;
+	margin:0px 0px 10px 0px;
+	padding:0px 0px 10px 0px;
+}
+
+.stati_left ul.lsnn li .image_cont,
+.stati_bottom ul.lsnn li .image_cont{
+	width:59px;
+	display:table-cell;
+	vertical-align:top;
+	margin:0px;
+	padding:0px 10px 0px 0px;
+}
+
+.stati_left ul.lsnn li .image_cont .image,
+.stati_bottom ul.lsnn li .image_cont .image{
+	width:57px;
+	height:37px;
+	display:table;	
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+}
+
+.stati_left ul.lsnn li .image_cont .image a,
+.stati_bottom ul.lsnn li .image_cont .image a{
+	display:table-cell;
+	margin:0px;
+	padding:0px;
+}
+
+.stati_left ul.lsnn li a.title-link,
+.stati_bottom ul.lsnn li a.title-link{
+	width:auto;
+	display:table-cell;
+	vertical-align:top;
+	margin:0px;
+	padding:0px;
+}
+
+.stati_left a.all,
+.stati_bottom a.all{
+	float:left;
+	margin:0px;
+	padding:0px;
+}

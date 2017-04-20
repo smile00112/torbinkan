@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Addist framework [by addist.ru]</name>
+    <code>addist</code>
+    <version>0.2</version>
+    <author>Mumtoz Qodirov [addist.ru]</author>
+    <link>http://addist.ru/</link>
+    
+    <file path="system/engine/front.php">
+        <operation error="skip">
+            <search><![CDATA[$this->registry = $registry;]]></search>
+            <add position="before"><![CDATA[
+    	    require_once(DIR_SYSTEM.'addist/startup.php');
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="system/engine/action.php">
+        <operation error="skip">
+            <ignoreif><![CDATA[function getArgs]]></ignoreif>
+            <search><![CDATA[public function __construct]]></search>
+            <add position="before"><![CDATA[
+        	public function getClass() {
+        		return $this->class;
+        	}
+            ]]></add>
+        </operation>
+    </file>
+</modification>

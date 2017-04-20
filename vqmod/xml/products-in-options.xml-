@@ -1,0 +1,789 @@
+<!-- Created using vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk //-->
+<modification>
+	<id><![CDATA[Products in Options]]></id>
+	<version><![CDATA[1.0.2]]></version>
+	<vqmver><![CDATA[2.1.6]]></vqmver>
+	<author><![CDATA[avot yoyo.dima@gmail.com]]></author>
+
+	<file name="admin/controller/catalog/product.php">
+		<operation>
+			<search position="after"><![CDATA[private function getForm() {]]></search>
+			<add><![CDATA[
+				$this->model_catalog_product->checkProductAsOption();
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[$this->data['tab_option'] = $this->language->get('tab_option');]]></search>
+			<add><![CDATA[
+				$this->data['tab_product_option'] = $this->language->get('tab_product_option');
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[$this->data['text_amount'] = $this->language->get('text_amount');]]></search>
+			<add><![CDATA[
+				$this->data['text_type_radio'] = $this->language->get('text_type_radio');
+				$this->data['text_type_select'] = $this->language->get('text_type_select');
+				$this->data['text_type_checkbox'] = $this->language->get('text_type_checkbox');
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[$this->data['entry_layout'] = $this->language->get('entry_layout');]]></search>
+			<add><![CDATA[
+				$this->data['entry_type'] = $this->language->get('entry_type');
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before"><![CDATA[$json[] = array(]]></search>
+			<add><![CDATA[
+				$special = false;
+			
+				$product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
+				
+				foreach ($product_specials  as $product_special) {
+					if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] < date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
+						$special = $product_special['price'];
+				
+						break;
+					}					
+				}
+
+				$this->load->model('tool/image');
+
+				if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])) {
+					$image = $result['image'];
+				} else {
+					$image = 'no_image.jpg';
+				}
+				
+				$thumb = $this->model_tool_image->resize($image, 100, 100);
+
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before" index="2"><![CDATA['price'      => $result['price']]]></search>
+			<add><![CDATA[
+				'image'      => $thumb,
+				'special'	 => $special,
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before"><![CDATA[$this->load->model('sale/customer_group');]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['product_product_option'])) {
+					$product_product_options = $this->request->post['product_product_option'];
+				} elseif (isset($this->request->get['product_id'])) {
+					$product_product_options = $this->model_catalog_product->getProductProductOptions($this->request->get['product_id']);			
+				} else {
+					$product_product_options = array();
+				}	
+
+				$this->data['product_product_options'] = array();
+	
+				foreach ($product_product_options as $product_product_option) {
+
+					$product_product_option_value_data = array();
+
+					foreach ($product_product_option['product_option'] as $product_option_value) {
+
+						if (isset($product_option_value['image']) && file_exists(DIR_IMAGE . $product_option_value['image'])) {
+							$thumb = $this->model_tool_image->resize($product_option_value['image'], 100, 100);
+						} else {
+							$thumb = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+						}
+
+						$special = false;
+			
+						$product_specials = $this->model_catalog_product->getProductSpecials($product_option_value['product_option_id']);
+						
+						foreach ($product_specials  as $product_special) {
+							if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] < date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
+								$special = $product_special['price'];
+						
+								break;
+							}					
+						}
+
+						$product_product_option_value_data[] = array(
+							'product_product_option_value_id' => $product_option_value['product_product_option_value_id'],
+							'product_option_id'         	  => $product_option_value['product_option_id'],
+							'name'                    		  => $product_option_value['name'],
+							'image'                   		  => $thumb,
+							'price'                   		  => $product_option_value['price'],
+							'special'						  => $special,
+							'sort_order'            		  => $product_option_value['sort_order'],					
+						);
+
+					}
+					
+					$this->data['product_product_options'][] = array(
+						'product_product_option_id'    => $product_product_option['product_product_option_id'],
+						'category_id'            	   => $product_product_option['category_id'],
+						'name'                 		   => $product_product_option['name'],
+						'type'                 		   => $product_product_option['type'],
+						'required'             		   => $product_product_option['required'],
+						'sort_order' 				   => $product_product_option['sort_order'],
+						'product_option' 			   => $product_product_option_value_data
+					);
+				}
+			]]></add>
+		</operation>	
+	</file>
+
+<file name="admin/language/russian/russian.php">
+		<operation>
+			<search position="after"><![CDATA[$_['tab_option']]]></search>
+			<add><![CDATA[
+				$_['tab_product_option']              = 'Товары Опции';
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="admin/language/english/english.php">
+		<operation>
+			<search position="after"><![CDATA[$_['tab_option']]]></search>
+			<add><![CDATA[
+				$_['tab_product_option']              = 'Products Option';
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="admin/language/russian/catalog/product.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_layout']]]></search>
+			<add><![CDATA[
+				$_['entry_type']           = 'Тип:';
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[$_['text_amount']]]></search>
+			<add><![CDATA[
+				$_['text_type_radio']            = 'Переключатель';
+				$_['text_type_select']           = 'Список';
+				$_['text_type_checkbox']         = 'Флажок';
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="admin/language/english/catalog/product.php">
+		<operation>
+			<search position="after"><![CDATA[$_['entry_layout']]]></search>
+			<add><![CDATA[
+				$_['entry_type']           = 'Type:';
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[$_['text_amount']]]></search>
+			<add><![CDATA[
+				$_['text_type_radio']            = 'Radio';
+				$_['text_type_select']           = 'Select';
+				$_['text_type_checkbox']         = 'Checkbox';
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="admin/model/catalog/product.php">
+		<operation>
+			<search position="before" index="1"><![CDATA[if (isset($data['product_discount'])) {]]></search>
+			<add><![CDATA[
+				if (!empty($data['product_product_option'])) {
+					foreach ($data['product_product_option'] as $product_product_option) {
+
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_product_option SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$product_product_option['category_id'] . "', type = '" . $this->db->escape($product_product_option['type']) . "', required = '" . (int)$product_product_option['required'] . "', sort_order = '" . (int)$product_product_option['sort_order'] . "'");
+				
+						$product_product_option_id = $this->db->getLastId();
+
+						if (!empty($product_product_option['product_option'])) {
+							foreach ($product_product_option['product_option'] as $product_option => $value) {
+								$this->db->query("INSERT INTO " . DB_PREFIX . "product_product_option_value SET product_product_option_id = '" . (int)$product_product_option_id . "', product_id = '" . (int)$product_id . "', product_option_id = '" . (int)$value['product_id'] . "', sort_order = '" . (int)$value['sort_order'] . "'");
+							} 
+						}
+					}
+				}
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before" index="1"><![CDATA[$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");]]></search>
+			<add><![CDATA[
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_product_option WHERE product_id = '" . (int)$product_id . "'");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_product_option_value WHERE product_id = '" . (int)$product_id . "'");
+
+				if (!empty($data['product_product_option'])) {
+					foreach ($data['product_product_option'] as $product_product_option) {
+
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_product_option SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$product_product_option['category_id'] . "', type = '" . $this->db->escape($product_product_option['type']) . "', required = '" . (int)$product_product_option['required'] . "', sort_order = '" . (int)$product_product_option['sort_order'] . "'");
+				
+						$product_product_option_id = $this->db->getLastId();
+
+						if (!empty($product_product_option['product_option'])) {
+							foreach ($product_product_option['product_option'] as $product_option => $value) {
+								$this->db->query("INSERT INTO " . DB_PREFIX . "product_product_option_value SET product_product_option_id = '" . (int)$product_product_option_id . "', product_id = '" . (int)$product_id . "', product_option_id = '" . (int)$value['product_id'] . "', sort_order = '" . (int)$value['sort_order'] . "'");
+							} 
+						}
+					}
+				}
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before" index="2"><![CDATA[$this->db->query("DELETE FROM " . DB_PREFIX . "review WHERE product_id = '" . (int)$product_id . "'");]]></search>
+			<add><![CDATA[
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_product_option WHERE product_id = '" . (int)$product_id . "'");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_product_option_value WHERE product_id = '" . (int)$product_id . "'");
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before"><![CDATA[public function getTotalProductsByLayoutId($layout_id) {]]></search>
+			<add><![CDATA[
+				public function getProductProductOptions($product_id) {
+					$product_option_data = array();
+					
+					$product_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_product_option ppo LEFT JOIN " . DB_PREFIX . "category_description cd ON (ppo.category_id = cd.category_id) WHERE ppo.product_id = '" . (int)$product_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ppo.sort_order");
+
+					foreach ($product_option_query->rows as $product_option) {
+
+						$product_option_value_data = array();
+						
+						$product_option_value_query = $this->db->query("SELECT ppov.*, pd.name, p.image, p.price FROM " . DB_PREFIX . "product_product_option_value ppov LEFT JOIN " . DB_PREFIX . "product p ON (ppov.product_option_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE ppov.product_product_option_id = '" . (int)$product_option['product_product_option_id'] . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ppov.sort_order");
+						
+						foreach ($product_option_value_query->rows as $product_option_value) {
+							$product_option_value_data[] = array(
+								'product_product_option_value_id' => $product_option_value['product_product_option_value_id'],
+								'product_option_id'         	  => $product_option_value['product_option_id'],
+								'name'                    		  => $product_option_value['name'],
+								'image'                   		  => $product_option_value['image'],
+								'price'                   		  => $product_option_value['price'],
+								'sort_order'            		  => $product_option_value['sort_order'],					
+							);
+						}
+
+						$this->load->model('catalog/category');
+						
+						$product_option_data[] = array(
+							'product_product_option_id'    => $product_option['product_product_option_id'],
+							'category_id'            	   => $product_option['category_id'],
+							'name'                 		   => $this->model_catalog_category->getPath($product_option['category_id'], $this->config->get('config_language_id')),
+							'type'                 		   => $product_option['type'],
+							'required'             		   => $product_option['required'],
+							'sort_order' 				   => $product_option['sort_order'],
+							'product_option' 			   => $product_option_value_data
+						);				
+					}	
+
+					return $product_option_data;					
+				}
+
+				public function checkProductAsOption() {
+					$this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "product_product_option (product_product_option_id int(11) NOT NULL AUTO_INCREMENT, product_id int(11) NOT NULL, category_id int(11) NOT NULL, type varchar(32) NOT NULL, required tinyint(1) NOT NULL, sort_order int(3) NOT NULL, PRIMARY KEY (product_product_option_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8;");
+
+					$this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "product_product_option_value (product_product_option_value_id int(11) NOT NULL AUTO_INCREMENT, product_product_option_id int(11) NOT NULL, product_id int(11) NOT NULL, product_option_id int(11) NOT NULL, sort_order int(2) NOT NULL DEFAULT '0', PRIMARY KEY (product_product_option_value_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8;");
+
+					return true;
+				}
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="admin/view/template/catalog/product_form.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<div id="tabs" class="htabs"><a href="#tab-general"><?php echo $tab_general; ?></a><a href="#tab-data"><?php echo $tab_data; ?></a><a href="#tab-links"><?php echo $tab_links; ?></a><a href="#tab-attribute"><?php echo $tab_attribute; ?></a><a href="#tab-option"><?php echo $tab_option; ?></a><a href="#tab-discount"><?php echo $tab_discount; ?></a><a href="#tab-special"><?php echo $tab_special; ?></a><a href="#tab-image"><?php echo $tab_image; ?></a><a href="#tab-reward"><?php echo $tab_reward; ?></a><a href="#tab-design"><?php echo $tab_design; ?></a></div>]]></search>
+			<add><![CDATA[
+				<div id="tabs" class="htabs"><a href="#tab-general"><?php echo $tab_general; ?></a><a href="#tab-data"><?php echo $tab_data; ?></a><a href="#tab-links"><?php echo $tab_links; ?></a><a href="#tab-attribute"><?php echo $tab_attribute; ?></a><a href="#tab-option"><?php echo $tab_option; ?></a><a href="#tab-product-option"><?php echo $tab_product_option; ?></a><a href="#tab-discount"><?php echo $tab_discount; ?></a><a href="#tab-special"><?php echo $tab_special; ?></a><a href="#tab-image"><?php echo $tab_image; ?></a><a href="#tab-reward"><?php echo $tab_reward; ?></a><a href="#tab-design"><?php echo $tab_design; ?></a></div>
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before"><![CDATA[<div id="tab-discount">]]></search>
+			<add><![CDATA[
+				<div id="tab-product-option">
+					<div id="vtab-product-option" class="vtabs">
+					<?php $product_product_option_row = 0; ?>
+					<?php foreach ($product_product_options as $product_product_option) { ?>
+						<a href="#tab-product-option-<?php echo $product_product_option_row; ?>" id="product-option-<?php echo $product_product_option_row; ?>"><?php echo $product_product_option['name']; ?>&nbsp;<img src="view/image/delete.png" alt="" onclick="$('#vtab-product-option a:first').trigger('click'); $('#product-option-<?php echo $product_product_option_row; ?>').remove(); $('#tab-product-option-<?php echo $product_product_option_row; ?>').remove(); return false;" /></a>
+						<?php $product_product_option_row++; ?>
+					<?php } ?>
+					<span id="product-option-add">
+					<select name="product_category_option" style="width: 136px;">
+						<option value="0"><?php echo $text_none; ?></option>
+						<?php foreach ($categories as $category) { ?>
+						<option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+						<?php } ?>
+					</select>
+					&nbsp;<img src="view/image/add.png" alt="<?php echo $button_add_option; ?>" title="<?php echo $button_add_option; ?>" /></span></div>
+					<?php $product_product_option_row = 0; ?>
+					<?php $product_product_option_value_row = 0; ?>
+					<?php foreach ($product_product_options as $product_option) { ?>
+						<div id="tab-product-option-<?php echo $product_product_option_row; ?>" class="vtabs-content">
+							<input type="hidden" name="product_product_option[<?php echo $product_product_option_row; ?>][category_id]" value="<?php echo $product_option['category_id']; ?>" />
+							<table class="form">
+								<tr>
+									<td><?php echo $entry_type; ?></td>
+									<td><select name="product_product_option[<?php echo $product_product_option_row; ?>][type]">
+										<option value="radio"<?php if ($product_option['type'] == 'radio') { ?> selected="selected"<?php } ?>><?php echo $text_type_radio; ?></option>
+										<option value="select"<?php if ($product_option['type'] == 'select') { ?> selected="selected"<?php } ?>><?php echo $text_type_select; ?></option>
+										<option value="checkbox"<?php if ($product_option['type'] == 'checkbox') { ?> selected="selected"<?php } ?>><?php echo $text_type_checkbox; ?></option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><?php echo $entry_required; ?></td>
+									<td><select name="product_product_option[<?php echo $product_product_option_row; ?>][required]">
+										<option value="0"<?php if ($product_option['required'] == '0') { ?> selected="selected"<?php } ?>><?php echo $text_no; ?></option>
+										<option value="1"<?php if ($product_option['required'] == '1') { ?> selected="selected"<?php } ?>><?php echo $text_yes; ?></option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><?php echo $entry_sort_order; ?></td>
+									<td><input type="text" name="product_product_option[<?php echo $product_product_option_row; ?>][sort_order]" value="<?php echo $product_option['sort_order']; ?>" size="2" /></td>
+								</tr>
+								<tr>
+									<td><?php echo $entry_name; ?></td>
+									<td><input type="text" name="product_option<?php echo $product_product_option_row; ?>" value="" /></td>
+								</tr>
+							</table>
+							<table id="product-option-value<?php echo $product_product_option_row; ?>" class="list">
+								<thead>
+									<tr>
+										<td class="left"><?php echo $entry_image; ?></td>
+										<td class="left"><?php echo $entry_name; ?></td>
+										<td class="right"><?php echo $entry_price; ?></td>
+										<td class="right"><?php echo $entry_sort_order; ?></td>
+										<td></td>
+									</tr>
+								</thead>
+								<?php foreach ($product_option['product_option'] as $product_option_value) { ?>
+								<tbody id="product-product-option-row<?php echo $product_product_option_row . $product_product_option_value_row; ?>">
+									<tr>
+										<td class="left"><img src="<?php echo $product_option_value['image']; ?>" alt="" /></td>
+										<td class="left"><?php echo $product_option_value['name']; ?></td>
+										<td class="right">
+											<?php if ($product_option_value['special']) { ?>
+											<span style="text-decoration: line-through;"><?php echo $product_option_value['price']; ?></span><br/><span style="color: #b00;"><?php echo $product_option_value['special']; ?></span>
+											<?php } else { ?>
+											<?php echo $product_option_value['price']; ?>
+											<?php } ?>
+										</td>
+										<td class="right"><input type="text" name="product_product_option[<?php echo $product_product_option_row; ?>][product_option][<?php echo $product_product_option_value_row; ?>][sort_order]" value="<?php echo $product_option_value['sort_order']; ?>" size="2" /></td>
+										<td><a onclick="$('#product-product-option-row<?php echo $product_product_option_row . $product_product_option_value_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a><input type="hidden" name="product_product_option[<?php echo $product_product_option_row; ?>][product_option][<?php echo $product_product_option_value_row; ?>][product_id]" value="<?php echo $product_option_value['product_option_id']; ?>" /></td>
+									</tr>
+								</tbody>
+								<?php $product_product_option_value_row++; ?>
+								<?php } ?>
+							<tfoot></tfoot>
+						  </table>			
+						</div>
+						<?php $product_product_option_row++; ?>
+					<?php } ?>
+		        </div>
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[
+				<script type="text/javascript"><!--
+				var product_product_option_row = <?php echo $product_product_option_value_row; ?>;
+				function addAutocomplete(product_option_row, category_id) {
+					$('input[name=\'product_option' + product_option_row + '\']').autocomplete({
+						delay: 0,
+						source: function(request, response) {
+							$.ajax({
+								url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term) + '&filter_category_id=' + category_id,
+								dataType: 'json',
+								success: function(json) {		
+									response($.map(json, function(item) {
+										return {
+											label: item.name,
+											value: item.product_id,
+											price: item.price,
+											special: item.special,
+											image: item.image
+										}
+									}));
+								}
+							});		
+						},
+						select: function(event, ui) {
+							html = '<tbody id="product-product-option-row' + product_option_row + '' + product_product_option_row + '">';
+							html += '<tr>';
+							html += '<td class="left"><img src="' + ui.item.image + '" alt="" /></td>';
+							html += '<td class="left">' + ui.item.label + '</td>';
+							if (ui.item.special) {
+								html += '<td class="right"><span style="text-decoration: line-through;">' + ui.item.price + '</span><br/><span style="color: #b00;">' + ui.item.special + '</span></td>';
+							} else {
+								html += '<td class="right">' + ui.item.price + '</td>';
+							}
+							html += '<td class="right"><input type="text" name="product_product_option[' + product_option_row + '][product_option][' + product_product_option_row + '][sort_order]" value="0" size="2" /></td>';
+							html += '<td><a onclick="$(\'#product-product-option-row' + product_option_row + '' + product_product_option_row + '\').remove();" class="button"><?php echo $button_remove; ?></a><input type="hidden" name="product_product_option[' + product_option_row + '][product_option][' + product_product_option_row + '][product_id]" value="' + ui.item.value + '" /></td>';
+							html += '</tr>';
+							html += '</tbody>';
+							$('#product-option-value' + product_option_row + ' tfoot').before(html);
+							product_product_option_row++;
+							$(this).val('');			
+							return false;
+						},
+						focus: function(event, ui) {
+					      return false;
+					   }
+					});
+				}
+				<?php $pp_option_row = 0; ?>
+				<?php foreach ($product_product_options as $product_option) { ?>
+				addAutocomplete(<?php echo $pp_option_row; ?>, <?php echo $product_option['category_id']; ?>);
+				<?php $pp_option_row++; ?>
+				<?php } ?>
+				--></script>
+
+				<script type="text/javascript"><!--	
+				var product_option_row = <?php echo $product_product_option_row; ?>;
+
+				$('select[name=\'product_category_option\']').change(function(){
+
+					var category_id = $(this).val();
+
+					if (category_id) {
+
+						html  = '<div id="tab-product-option-' + product_option_row + '" class="vtabs-content">';
+						html += '	<input type="hidden" name="product_product_option[' + product_option_row + '][category_id]" value="' + category_id + '" />';
+						html += '	<table class="form">';
+						html += '	  <tr>';
+						html += '		<td><?php echo $entry_type; ?></td>';
+						html += '       <td><select name="product_product_option[' + product_option_row + '][type]">';
+						html += '	      <option value="radio"><?php echo $text_type_radio; ?></option>';
+						html += '	      <option value="select"><?php echo $text_type_select; ?></option>';
+						html += '	      <option value="checkbox"><?php echo $text_type_checkbox; ?></option>';
+						html += '	    </select></td>';
+						html += '     </tr>';
+						html += '	  <tr>';
+						html += '		<td><?php echo $entry_required; ?></td>';
+						html += '       <td><select name="product_product_option[' + product_option_row + '][required]">';
+						html += '	      <option value="0"><?php echo $text_no; ?></option>';
+						html += '	      <option value="1"><?php echo $text_yes; ?></option>';
+						html += '	    </select></td>';
+						html += '     </tr>';
+						html += '	  <tr>';
+						html += '		<td><?php echo $entry_sort_order; ?></td>';
+						html += '       <td><input type="text" name="product_product_option[' + product_option_row + '][sort_order]" value="0" size="2" /></td>';
+						html += '     </tr>';
+						html += '	  <tr>';
+						html += '		<td><?php echo $entry_name; ?></td>';
+						html += '       <td><input type="text" name="product_option' + product_option_row + '" value="" /></td>';
+						html += '     </tr>';
+						html += '  </table>';
+							
+						html += '  <table id="product-option-value' + product_option_row + '" class="list">';
+						html += '  	 <thead>'; 
+						html += '      <tr>';
+						html += '        <td class="left"><?php echo $entry_image; ?></td>';
+						html += '        <td class="left"><?php echo $entry_name; ?></td>';
+						html += '        <td class="right"><?php echo $entry_price; ?></td>';
+						html += '        <td class="right"><?php echo $entry_sort_order; ?></td>';
+						html += '        <td></td>';
+						html += '      </tr>';
+						html += '  	 </thead>';
+						html += '  	 <tfoot></tfoot>';
+						html += '  </table>';			
+						html += '</div>';	
+						
+						$('#tab-product-option').append(html);
+
+						$('#product-option-add').before('<a href="#tab-product-option-' + product_option_row + '" id="product-option-' + product_option_row + '">' + $('select[name=\'product_category_option\'] option:selected').text() + '&nbsp;<img src="view/image/delete.png" alt="" onclick="$(\'#vtab-product-option a:first\').trigger(\'click\'); $(\'#product-option-' + product_option_row + '\').remove(); $(\'#tab-product-option-' + product_option_row + '\').remove(); return false;" /></a>');
+							
+						$('#vtab-product-option a').tabs();
+
+						$('#product-option-' + product_option_row).trigger('click');
+
+						$('select[name=\'product_category_option\'] option:first').attr('selected', 'selected');
+
+						addAutocomplete(product_option_row, category_id);
+
+						product_option_row++;
+
+					}
+
+					return false;
+				})
+
+				//--></script>
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[$('#vtab-option a').tabs();]]></search>
+			<add><![CDATA[
+				$('#vtab-product-option a').tabs();
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="tb_themes/shoppica2/catalog/controller/TbController.php">
+		<operation>
+			<search position="before"><![CDATA[if (!isset($json['error'])) {]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['product-option'])) {
+					$product_option = array_filter($this->request->post['product-option']);
+				} else {
+					$product_option = array();	
+				}
+
+				$product_product_options = $this->model_catalog_product->getProductProductOptions($this->request->post['product_id']);
+			
+				foreach ($product_product_options as $product_product_option) {
+					if ($product_product_option['required'] && empty($product_option[$product_product_option['product_product_option_id']])) {
+						$json['error']['product-option'][$product_product_option['product_product_option_id']] = sprintf($this->language->get('error_required'), $product_product_option['name']);
+					}
+				}
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[$this->cart->add($product_id, $quantity, $option);]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['product-option'])) {
+					$product_options = array_filter($this->request->post['product-option']);
+					foreach ($product_options as $product_option => $product_id) {
+						if (is_array($product_id)) {
+							foreach ($product_id as $prod => $prod_id) {
+								$this->cart->add($prod_id, $quantity, '');
+							}
+						} else {
+							$this->cart->add($product_id, $quantity, '');
+						}
+					}
+				}
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="before"><![CDATA[if ($product_info['minimum']) {]]></search>
+			<add><![CDATA[
+				$product_product_options = array();
+
+				$product_product_options = $this->model_catalog_product->getProductProductOptions($this->request->get['product_id']);
+
+				$this->data['product_product_options'] = array();
+	
+				foreach ($product_product_options as $product_product_option) {
+
+					$product_product_option_value_data = array();
+
+					foreach ($product_product_option['product_option'] as $product_option_value) {
+
+						if (isset($product_option_value['image']) && file_exists(DIR_IMAGE . $product_option_value['image'])) {
+							$thumb = $this->model_tool_image->resize($product_option_value['image'], 50, 50);
+							$popup = $this->model_tool_image->resize($product_option_value['image'],  $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
+						} else {
+							$thumb = $this->model_tool_image->resize('no_image.jpg', 50, 50);
+							$popup = $this->model_tool_image->resize('no_image.jpg',  $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
+						}
+
+						$special = false;
+			
+						$product_option_info = $this->model_catalog_product->getProduct($product_option_value['product_option_id']);
+
+						if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+							$price = $this->currency->format($this->tax->calculate($product_option_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+						} else {
+							$price = false;
+						}
+									
+						if ((float)$product_option_info['special']) {
+							$special = $this->currency->format($this->tax->calculate($product_option_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+						} else {
+							$special = false;
+						}
+
+						$product_product_option_value_data[] = array(
+							'product_option_id'         	  => $product_option_value['product_option_id'],
+							'name'                    		  => $product_option_value['name'],
+							'image'                   		  => $thumb,
+							'popup'							  => $popup,
+							'price'                   		  => $price,
+							'special'						  => $special
+						);
+
+					}
+					
+					$this->data['product_product_options'][] = array(
+						'product_product_option_id'    => $product_product_option['product_product_option_id'],
+						'name'                 		   => $product_product_option['name'],
+						'type'                 		   => $product_product_option['type'],
+						'required'             		   => $product_product_option['required'],
+						'product_option' 			   => $product_product_option_value_data
+					);
+				}
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="catalog/model/catalog/product.php">
+		<operation>
+			<search position="before"><![CDATA[public function getTotalProductSpecials() {]]></search>
+			<add><![CDATA[
+				public function getProductProductOptions($product_id) {
+					$product_option_data = array();
+					
+					$product_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_product_option ppo LEFT JOIN " . DB_PREFIX . "category_description cd ON (ppo.category_id = cd.category_id) WHERE ppo.product_id = '" . (int)$product_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ppo.sort_order");
+
+					foreach ($product_option_query->rows as $product_option) {
+
+						$product_option_value_data = array();
+						
+						$product_option_value_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_product_option_value ppov LEFT JOIN " . DB_PREFIX . "product p ON (ppov.product_option_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE ppov.product_product_option_id = '" . (int)$product_option['product_product_option_id'] . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ppov.sort_order");
+						
+						foreach ($product_option_value_query->rows as $product_option_value) {
+							$product_option_value_data[] = array(
+								'product_option_id'         	  => $product_option_value['product_option_id'],
+								'name'                    		  => $product_option_value['name'],
+								'image'                   		  => $product_option_value['image'],
+								'price'                   		  => $product_option_value['price']
+							);
+						}
+						
+						$product_option_data[] = array(
+							'product_product_option_id'    => $product_option['product_product_option_id'],
+							'name'                 		   => $product_option['name'],
+							'type'                 		   => $product_option['type'],
+							'required'             		   => $product_option['required'],
+							'product_option' 			   => $product_option_value_data
+						);				
+					}	
+
+					return $product_option_data;					
+				}
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="replace"><![CDATA[<?php if ($options) require TB_Utils::vqmodCheck('catalog/view/theme/' . $this->config->get('config_template') . '/template/product/product_options.tpl'); ?>]]></search>
+			<add><![CDATA[
+				<?php if ($options || $product_product_options) require TB_Utils::vqmodCheck('catalog/view/theme/' . $this->config->get('config_template') . '/template/product/product_options.tpl'); ?>
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/product/product_options.tpl">
+		<operation>
+			<search position="after" index="5"><![CDATA[<?php endforeach; ?>]]></search>
+			<add><![CDATA[
+				<?php foreach ($product_product_options as $product_product_option) { ?>
+				<?php if ($product_product_option['type'] == 'select') { ?>
+				<div id="product-option-<?php echo $product_product_option['product_product_option_id']; ?>" class="s_row_2 clearfix">
+					<label>
+						<?php if ($product_product_option['required']) { ?>
+						<strong class="s_red">*</strong>         
+						<?php } ?>
+						<?php echo $product_product_option['name']; ?>
+					</label>
+					<div class="s_full clearfix">
+						<select name="product-option[<?php echo $product_product_option['product_product_option_id']; ?>]">
+							<option value=""><?php echo $text_select; ?></option>
+							<?php foreach ($product_product_option['product_option'] as $product_option_value) { ?>
+							<option value="<?php echo $product_option_value['product_option_id']; ?>"><?php echo $product_option_value['name']; ?>
+								<?php if ($product_option_value['special']) { ?>
+								(+<?php echo $product_option_value['special']; ?>)
+								<?php } else { ?>
+								(+<?php echo $product_option_value['price']; ?>)
+								<?php } ?>
+							</option>
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+				<?php } ?>
+
+				<?php if ($product_product_option['type'] == 'radio') { ?>
+				<div id="product-option-<?php echo $product_product_option['product_product_option_id']; ?>" class="s_row_2 clearfix">
+					<label>
+						<?php if ($product_product_option['required']) { ?>
+						<strong class="s_red">*</strong>
+						<?php } ?>
+						<?php echo $product_product_option['name']; ?>
+					</label>
+					<div class="s_full clearfix">
+						<?php foreach ($product_product_option['product_option'] as $product_option_value) { ?>
+						<label class="s_image" for="product-option-value-<?php echo $product_option_value['product_option_id']; ?>">
+							<a href="<?php echo $product_option_value['popup']; ?>" title="<?php echo $product_option_value['name']; ?>" rel="prettyPhoto[<?php echo $product_product_option['product_product_option_id']; ?>]"><img src="<?php echo $product_option_value['image']; ?>" alt="<?php echo $product_option_value['name']; ?>" /></a>
+							<span class="s_label">
+								<span class="s_radio">
+									<input type="radio" name="product-option[<?php echo $product_product_option['product_product_option_id']; ?>]" value="<?php echo $product_option_value['product_option_id']; ?>" id="product-option-value-<?php echo $product_option_value['product_option_id']; ?>" />
+									<?php echo $product_option_value['name']; ?>
+									<?php if ($product_option_value['special']) { ?>
+									(+<?php echo $product_option_value['special']; ?>)
+									<?php } else { ?>
+									(+<?php echo $product_option_value['price']; ?>)
+									<?php } ?>
+								</span>
+							</span>
+						</label>
+						<?php } ?>
+					</div>
+				</div>
+				<?php } ?>
+
+				<?php if ($product_product_option['type'] == 'checkbox') { ?>
+				<div id="product-option-<?php echo $product_product_option['product_product_option_id']; ?>" class="s_row_2 clearfix">
+					<label>
+						<?php if ($product_product_option['required']) { ?>
+						<strong class="s_red">*</strong>
+						<?php } ?>
+						<?php echo $product_product_option['name']; ?>
+					</label>
+					<div class="s_full clearfix">
+						<?php foreach ($product_product_option['product_option'] as $product_option_value) { ?>
+						<label class="s_image" for="product-option-value-<?php echo $product_option_value['product_option_id']; ?>">
+							<a href="<?php echo $product_option_value['popup']; ?>" title="<?php echo $product_option_value['name']; ?>" rel="prettyPhoto[<?php echo $product_product_option['product_product_option_id']; ?>]"><img src="<?php echo $product_option_value['image']; ?>" alt="<?php echo $product_option_value['name']; ?>" /></a>
+							<span class="s_label">
+								<span class="s_radio">
+									<input type="checkbox" name="product-option[<?php echo $product_product_option['product_product_option_id']; ?>][]" value="<?php echo $product_option_value['product_option_id']; ?>" id="product-option-value-<?php echo $product_option_value['product_option_id']; ?>" />
+									<?php echo $product_option_value['name']; ?>
+									<?php if ($product_option_value['special']) { ?>
+									(+<?php echo $product_option_value['special']; ?>)
+									<?php } else { ?>
+									(+<?php echo $product_option_value['price']; ?>)
+									<?php } ?>
+								</span>
+							</span>
+						</label>
+						<?php } ?>
+					</div>
+				</div>
+				<?php } ?>
+				<?php } ?>
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="before"><![CDATA[for (i in json['error']) {]]></search>
+			<add><![CDATA[
+				if (json['error']['product-option']) {
+					for (i in json['error']['product-option']) {
+						$('#product-option-' + i).append('<p class="s_error_msg">' + json['error']['product-option'][i] + '</p>');
+					}
+				}
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[$("#product_images a[rel^='prettyPhoto'], #product_gallery a[rel^='prettyPhoto']").prettyPhoto({]]></search>
+			<add><![CDATA[
+				$("#product_images a[rel^='prettyPhoto'], #product_gallery a[rel^='prettyPhoto'], #product_options a[rel^='prettyPhoto']").prettyPhoto({
+			]]></add>
+		</operation>
+	</file>
+
+</modification>

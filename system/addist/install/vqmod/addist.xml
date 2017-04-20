@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <id>Addist framework [by addist.ru]</id>
+    <version>0.2</version>
+    <vqmver>2</vqmver>
+    <author>Mumtoz Qodirov [addist.ru]</author>
+    
+    <file name="system/engine/front.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[$this->registry = $registry;]]></search>
+            <add><![CDATA[require_once(DIR_SYSTEM.'addist/startup.php');]]></add>
+        </operation>
+    </file>
+</modification>

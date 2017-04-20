@@ -1,0 +1,1 @@
+<span class="attention"><?php echo $message; ?></span>
